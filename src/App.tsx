@@ -8,6 +8,7 @@ import Dashboard from "./pages/Dashboard";
 import Properties from "./pages/Properties";
 import CreateProperty from "./pages/CreateProperty";
 import Comparisons from "./pages/Comparisons";
+import ComparisonCalculation from "./pages/ComparisonCalculation";
 import RehabEstimator from "./pages/RehabEstimator";
 import MaxBid from "./pages/MaxBid";
 import Reports from "./pages/Reports";
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/properties" element={<Properties />} />
           <Route path="/create-property" element={<CreateProperty />} />
           <Route path="/comparisons" element={<Comparisons />} />
+          <Route path="/comparison-calculation" element={<ComparisonCalculation />} />
           <Route path="/rehab-estimator" element={<RehabEstimator />} />
           <Route path="/max-bid" element={<MaxBid />} />
           <Route path="/reports" element={<Reports />} />

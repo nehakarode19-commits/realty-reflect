@@ -2,8 +2,9 @@ import Layout from "@/components/Layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { Trash2, Upload } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Trash2 } from "lucide-react";
 
 const comparisons = [
   {
@@ -56,24 +57,68 @@ const comparisons = [
   },
 ];
 
-const Comparisons = () => {
-  const navigate = useNavigate();
-
+const ComparisonCalculation = () => {
   return (
     <Layout>
       <div className="space-y-6">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-foreground">Comparison Property Master</h1>
-          </div>
-          <Button className="bg-gradient-to-r from-primary to-secondary">
-            <Upload className="w-4 h-4 mr-2" />
-            Upload
-          </Button>
+        <div>
+          <h1 className="text-3xl font-bold text-foreground">Comparison Calculation</h1>
         </div>
 
         <Card className="shadow-lg">
-          <CardContent className="pt-6">
+          <CardContent className="pt-6 space-y-6">
+            <div className="grid grid-cols-2 gap-6">
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <Label className="text-muted-foreground">Main Property Address</Label>
+                  <Input 
+                    defaultValue="123 Main Street cmnnati, OH, 43102" 
+                    className="border-muted"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label className="text-muted-foreground">Bed/ Bath</Label>
+                  <Input 
+                    defaultValue="2/2" 
+                    className="border-muted"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label className="text-muted-foreground">PSF Price (Calculated)</Label>
+                  <Input 
+                    defaultValue="$90.14" 
+                    className="border-muted"
+                    readOnly
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <Label className="text-muted-foreground">SQ FT</Label>
+                  <Input 
+                    defaultValue="1973" 
+                    className="border-muted"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label className="text-muted-foreground">Year Built</Label>
+                  <Input 
+                    defaultValue="1973" 
+                    className="border-muted"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label className="text-muted-foreground">ARV (Calculated)</Label>
+                  <Input 
+                    defaultValue="$177,839" 
+                    className="border-muted"
+                    readOnly
+                  />
+                </div>
+              </div>
+            </div>
+
             <div className="overflow-x-auto">
               <Table>
                 <TableHeader>
@@ -93,11 +138,7 @@ const Comparisons = () => {
                 </TableHeader>
                 <TableBody>
                   {comparisons.map((comp) => (
-                    <TableRow 
-                      key={comp.no}
-                      className="cursor-pointer hover:bg-muted/50"
-                      onClick={() => navigate("/comparison-calculation")}
-                    >
+                    <TableRow key={comp.no}>
                       <TableCell>{comp.no}</TableCell>
                       <TableCell className="font-medium">{comp.address}</TableCell>
                       <TableCell>{comp.sqft}</TableCell>
@@ -110,13 +151,7 @@ const Comparisons = () => {
                       <TableCell>{comp.notes}</TableCell>
                       <TableCell>
                         <div className="flex items-center justify-end gap-2">
-                          <Button 
-                            variant="ghost" 
-                            size="icon"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                            }}
-                          >
+                          <Button variant="ghost" size="icon">
                             <Trash2 className="w-4 h-4 text-primary" />
                           </Button>
                         </div>
@@ -127,9 +162,12 @@ const Comparisons = () => {
               </Table>
             </div>
 
-            <div className="flex justify-end mt-6">
-              <Button className="bg-gradient-to-r from-primary to-secondary px-8">
-                Save
+            <div className="flex gap-4">
+              <Button className="bg-gradient-to-r from-primary to-secondary">
+                + Add Comparable
+              </Button>
+              <Button className="bg-gradient-to-r from-primary to-secondary">
+                Recalculate ARV
               </Button>
             </div>
           </CardContent>
@@ -139,4 +177,4 @@ const Comparisons = () => {
   );
 };
 
-export default Comparisons;
+export default ComparisonCalculation;
