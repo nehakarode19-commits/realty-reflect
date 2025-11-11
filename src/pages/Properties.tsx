@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Edit, Trash2, Eye, Search } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { useNavigate } from "react-router-dom";
 
 const properties = [
   {
@@ -70,6 +71,8 @@ const properties = [
 ];
 
 const Properties = () => {
+  const navigate = useNavigate();
+  
   const formatCurrency = (value: number) => {
     return new Intl.NumberFormat("en-US", {
       style: "currency",
@@ -99,7 +102,10 @@ const Properties = () => {
             <h1 className="text-3xl font-bold text-foreground">Property Master</h1>
             <p className="text-muted-foreground mt-1">Manage all your investment properties</p>
           </div>
-          <Button className="bg-gradient-to-r from-primary to-secondary">
+          <Button 
+            className="bg-gradient-to-r from-primary to-secondary"
+            onClick={() => navigate("/create-property")}
+          >
             Add New Property
           </Button>
         </div>
