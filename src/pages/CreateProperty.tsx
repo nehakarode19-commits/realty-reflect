@@ -1,0 +1,138 @@
+import Layout from "@/components/Layout";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { toast } from "sonner";
+
+const CreateProperty = () => {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast.success("Property saved successfully!");
+  };
+
+  return (
+    <Layout>
+      <div className="space-y-6 max-w-5xl">
+        <div>
+          <h1 className="text-3xl font-bold text-foreground">Create Property</h1>
+          <p className="text-muted-foreground mt-1">Add a new property to your investment portfolio</p>
+        </div>
+
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Basic Information */}
+          <Card className="shadow-lg">
+            <CardHeader>
+              <CardTitle>Basic Information</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="caseNo">Case No</Label>
+                  <Input id="caseNo" placeholder="e.g., 1255" required />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="parcelId">Parcel ID (APN etc)</Label>
+                  <Input id="parcelId" placeholder="e.g., 100002444400" required />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="lienAmount">Lien Amount</Label>
+                  <Input id="lienAmount" type="number" placeholder="e.g., 20000" required />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="startingBid">Starting Bid</Label>
+                  <Input id="startingBid" type="number" placeholder="e.g., 25000" required />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Property Details */}
+          <Card className="shadow-lg">
+            <CardHeader>
+              <CardTitle>Property Details</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="owners">Owners</Label>
+                  <Input id="owners" placeholder="Owner name" required />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="bedBath">Bed/Bath</Label>
+                  <Input id="bedBath" placeholder="e.g., 3/2" required />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="sqFootage">Sq. Footage</Label>
+                  <Input id="sqFootage" type="number" placeholder="e.g., 1500" required />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="address">Address</Label>
+                  <Input id="address" placeholder="Full address" required />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Financial Details */}
+          <Card className="shadow-lg">
+            <CardHeader>
+              <CardTitle>Financial Details</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="finalARV">Final ARV</Label>
+                  <Input id="finalARV" type="number" placeholder="After Repair Value" required />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="rehabEstimate">Rehab Estimate</Label>
+                  <Input id="rehabEstimate" type="number" placeholder="Estimated rehab cost" required />
+                </div>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="notes">Notes</Label>
+                <Textarea
+                  id="notes"
+                  placeholder="Additional notes or comments..."
+                  rows={4}
+                />
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Additional Information */}
+          <Card className="shadow-lg">
+            <CardHeader>
+              <CardTitle>Additional Information</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="photoLink">Photo Link</Label>
+                  <Input id="photoLink" type="url" placeholder="https://..." />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="countySites">County Sites</Label>
+                  <Input id="countySites" type="url" placeholder="https://..." />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <div className="flex gap-4">
+            <Button type="submit" className="bg-gradient-to-r from-primary to-secondary">
+              Save Property
+            </Button>
+            <Button type="button" variant="outline">
+              Cancel
+            </Button>
+          </div>
+        </form>
+      </div>
+    </Layout>
+  );
+};
+
+export default CreateProperty;
