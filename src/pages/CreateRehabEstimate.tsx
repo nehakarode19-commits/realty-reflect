@@ -4,7 +4,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Calculator } from "lucide-react";
+import { Textarea } from "@/components/ui/textarea";
+import { Calculator, Upload, Link as LinkIcon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 
@@ -65,9 +66,84 @@ const CreateRehabEstimate = () => {
     <Layout>
       <div className="space-y-6">
         <div>
-          <h1 className="text-3xl font-bold text-foreground">Rehab Estimator</h1>
-          <p className="text-muted-foreground mt-2">Calculate renovation costs for your property</p>
+          <h1 className="text-3xl font-bold text-foreground">Create Property</h1>
         </div>
+
+        <Card className="shadow-lg">
+          <CardContent className="p-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+              <div className="space-y-2">
+                <Label htmlFor="caseNo">Case no</Label>
+                <Input id="caseNo" placeholder="Case no" />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="parcelId">Parcel id (APN etc)</Label>
+                <Input id="parcelId" placeholder="Parcel id (APN etc)" />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="lienAmount">Lien Amount Starting Bid</Label>
+                <Input id="lienAmount" placeholder="Lien Amount Starting Bid" />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="owners">Owners</Label>
+                <Input id="owners" placeholder="Owners" />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="bedBath">Bed/Bath</Label>
+                <Input id="bedBath" placeholder="Bed/Bath" />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="sqFootage">Sq.Footage</Label>
+                <Input id="sqFootage" placeholder="Sq.Footage" />
+              </div>
+
+              <div className="space-y-2 md:col-span-3">
+                <Label htmlFor="address">Address</Label>
+                <Input id="address" placeholder="Address" />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="finalARV">Final ARV</Label>
+                <Input id="finalARV" placeholder="Final ARV" />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="rehabEstimate">Rehab Estimate</Label>
+                <Input id="rehabEstimate" placeholder="Rehab Estimate" />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="notes">Notes</Label>
+                <Textarea id="notes" placeholder="Notes" className="min-h-[80px]" />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="photoLink">Photo link</Label>
+                <div className="flex gap-2">
+                  <Input id="photoLink" placeholder="Photo link" />
+                  <Button variant="outline" size="icon">
+                    <Upload className="w-4 h-4" />
+                  </Button>
+                </div>
+              </div>
+
+              <div className="space-y-2 md:col-span-2">
+                <Label htmlFor="countySites">County sites</Label>
+                <div className="flex gap-2">
+                  <Input id="countySites" placeholder="County sites" />
+                  <Button variant="outline" size="icon">
+                    <LinkIcon className="w-4 h-4" />
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
         <Card className="shadow-lg">
           <CardContent className="p-6">
