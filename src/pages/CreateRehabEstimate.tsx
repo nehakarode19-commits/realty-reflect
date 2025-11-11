@@ -4,8 +4,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { Calculator, Upload, Link as LinkIcon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 
@@ -13,45 +11,18 @@ const CreateRehabEstimate = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   
-  const [estimates, setEstimates] = useState({
-    roofRepair: 0,
-    hvacSystem: 0,
-    plumbing: 0,
-    electrical: 0,
-    kitchenRemodel: 0,
-    bathroomRemodel: 0,
-    flooring: 0,
-    paintInteriorExterior: 0,
-    windowsDoors: 0,
-    landscaping: 0,
+  const [formData, setFormData] = useState({
+    propertyName: "",
+    sqft: "",
+    rehabType: "",
+    address: "",
+    fromDate: "",
+    rehabRange: "",
+    roughRehabEstimate: "",
   });
 
-  const [totalEstimate, setTotalEstimate] = useState(0);
-
   const handleInputChange = (field: string, value: string) => {
-    const numValue = parseFloat(value) || 0;
-    setEstimates(prev => ({ ...prev, [field]: numValue }));
-  };
-
-  const calculateTotal = () => {
-    const total = Object.values(estimates).reduce((sum, val) => sum + val, 0);
-    setTotalEstimate(total);
-  };
-
-  const resetForm = () => {
-    setEstimates({
-      roofRepair: 0,
-      hvacSystem: 0,
-      plumbing: 0,
-      electrical: 0,
-      kitchenRemodel: 0,
-      bathroomRemodel: 0,
-      flooring: 0,
-      paintInteriorExterior: 0,
-      windowsDoors: 0,
-      landscaping: 0,
-    });
-    setTotalEstimate(0);
+    setFormData(prev => ({ ...prev, [field]: value }));
   };
 
   const handleSave = () => {
@@ -66,225 +37,87 @@ const CreateRehabEstimate = () => {
     <Layout>
       <div className="space-y-6">
         <div>
-          <h1 className="text-3xl font-bold text-foreground">Create Property</h1>
+          <h1 className="text-3xl font-bold text-foreground">Create Rehab Estimator</h1>
         </div>
 
         <Card className="shadow-lg">
           <CardContent className="p-6">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="space-y-2">
-                <Label htmlFor="caseNo">Case no</Label>
-                <Input id="caseNo" placeholder="Case no" />
+                <Label htmlFor="propertyName">Property Name</Label>
+                <Input
+                  id="propertyName"
+                  placeholder="Property Name"
+                  value={formData.propertyName}
+                  onChange={(e) => handleInputChange("propertyName", e.target.value)}
+                />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="parcelId">Parcel id (APN etc)</Label>
-                <Input id="parcelId" placeholder="Parcel id (APN etc)" />
+                <Label htmlFor="sqft">SQ FT</Label>
+                <Input
+                  id="sqft"
+                  placeholder="SQ FT"
+                  value={formData.sqft}
+                  onChange={(e) => handleInputChange("sqft", e.target.value)}
+                />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="lienAmount">Lien Amount Starting Bid</Label>
-                <Input id="lienAmount" placeholder="Lien Amount Starting Bid" />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="owners">Owners</Label>
-                <Input id="owners" placeholder="Owners" />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="bedBath">Bed/Bath</Label>
-                <Input id="bedBath" placeholder="Bed/Bath" />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="sqFootage">Sq.Footage</Label>
-                <Input id="sqFootage" placeholder="Sq.Footage" />
+                <Label htmlFor="rehabType">Rehab Type</Label>
+                <Input
+                  id="rehabType"
+                  placeholder="Rehab Type"
+                  value={formData.rehabType}
+                  onChange={(e) => handleInputChange("rehabType", e.target.value)}
+                />
               </div>
 
               <div className="space-y-2 md:col-span-3">
                 <Label htmlFor="address">Address</Label>
-                <Input id="address" placeholder="Address" />
+                <Input
+                  id="address"
+                  placeholder="From Date"
+                  value={formData.address}
+                  onChange={(e) => handleInputChange("address", e.target.value)}
+                />
+              </div>
+
+              <div className="space-y-2 md:col-span-3">
+                <Label htmlFor="fromDate">From Date</Label>
+                <Input
+                  id="fromDate"
+                  type="date"
+                  value={formData.fromDate}
+                  onChange={(e) => handleInputChange("fromDate", e.target.value)}
+                />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="finalARV">Final ARV</Label>
-                <Input id="finalARV" placeholder="Final ARV" />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="rehabEstimate">Rehab Estimate</Label>
-                <Input id="rehabEstimate" placeholder="Rehab Estimate" />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="notes">Notes</Label>
-                <Textarea id="notes" placeholder="Notes" className="min-h-[80px]" />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="photoLink">Photo link</Label>
-                <div className="flex gap-2">
-                  <Input id="photoLink" placeholder="Photo link" />
-                  <Button variant="outline" size="icon">
-                    <Upload className="w-4 h-4" />
-                  </Button>
-                </div>
+                <Label htmlFor="rehabRange">Rehab Range</Label>
+                <Input
+                  id="rehabRange"
+                  placeholder="Rehab Range"
+                  value={formData.rehabRange}
+                  onChange={(e) => handleInputChange("rehabRange", e.target.value)}
+                />
               </div>
 
               <div className="space-y-2 md:col-span-2">
-                <Label htmlFor="countySites">County sites</Label>
-                <div className="flex gap-2">
-                  <Input id="countySites" placeholder="County sites" />
-                  <Button variant="outline" size="icon">
-                    <LinkIcon className="w-4 h-4" />
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card className="shadow-lg">
-          <CardContent className="p-6">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                <Calculator className="w-6 h-6 text-primary" />
-              </div>
-              <h2 className="text-2xl font-semibold">Estimate Breakdown</h2>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="space-y-2">
-                <Label htmlFor="roofRepair">Roof Repair/Replace</Label>
+                <Label htmlFor="roughRehabEstimate">Rough Rehab Estimate</Label>
                 <Input
-                  id="roofRepair"
-                  type="number"
-                  value={estimates.roofRepair || ""}
-                  onChange={(e) => handleInputChange("roofRepair", e.target.value)}
-                  placeholder="0"
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="hvacSystem">HVAC System</Label>
-                <Input
-                  id="hvacSystem"
-                  type="number"
-                  value={estimates.hvacSystem || ""}
-                  onChange={(e) => handleInputChange("hvacSystem", e.target.value)}
-                  placeholder="0"
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="plumbing">Plumbing</Label>
-                <Input
-                  id="plumbing"
-                  type="number"
-                  value={estimates.plumbing || ""}
-                  onChange={(e) => handleInputChange("plumbing", e.target.value)}
-                  placeholder="0"
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="electrical">Electrical</Label>
-                <Input
-                  id="electrical"
-                  type="number"
-                  value={estimates.electrical || ""}
-                  onChange={(e) => handleInputChange("electrical", e.target.value)}
-                  placeholder="0"
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="kitchenRemodel">Kitchen Remodel</Label>
-                <Input
-                  id="kitchenRemodel"
-                  type="number"
-                  value={estimates.kitchenRemodel || ""}
-                  onChange={(e) => handleInputChange("kitchenRemodel", e.target.value)}
-                  placeholder="0"
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="bathroomRemodel">Bathroom Remodel</Label>
-                <Input
-                  id="bathroomRemodel"
-                  type="number"
-                  value={estimates.bathroomRemodel || ""}
-                  onChange={(e) => handleInputChange("bathroomRemodel", e.target.value)}
-                  placeholder="0"
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="flooring">Flooring</Label>
-                <Input
-                  id="flooring"
-                  type="number"
-                  value={estimates.flooring || ""}
-                  onChange={(e) => handleInputChange("flooring", e.target.value)}
-                  placeholder="0"
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="paintInteriorExterior">Interior/Exterior Paint</Label>
-                <Input
-                  id="paintInteriorExterior"
-                  type="number"
-                  value={estimates.paintInteriorExterior || ""}
-                  onChange={(e) => handleInputChange("paintInteriorExterior", e.target.value)}
-                  placeholder="0"
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="windowsDoors">Windows & Doors</Label>
-                <Input
-                  id="windowsDoors"
-                  type="number"
-                  value={estimates.windowsDoors || ""}
-                  onChange={(e) => handleInputChange("windowsDoors", e.target.value)}
-                  placeholder="0"
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="landscaping">Landscaping</Label>
-                <Input
-                  id="landscaping"
-                  type="number"
-                  value={estimates.landscaping || ""}
-                  onChange={(e) => handleInputChange("landscaping", e.target.value)}
-                  placeholder="0"
+                  id="roughRehabEstimate"
+                  placeholder="Rough Rehab Estimate"
+                  value={formData.roughRehabEstimate}
+                  onChange={(e) => handleInputChange("roughRehabEstimate", e.target.value)}
                 />
               </div>
             </div>
 
-            <div className="mt-8 pt-6 border-t">
-              <div className="flex items-center justify-between mb-6">
-                <h3 className="text-xl font-semibold">Total Rehab Estimate</h3>
-                <p className="text-3xl font-bold text-primary">
-                  ${totalEstimate.toLocaleString()}
-                </p>
-              </div>
-
-              <div className="flex gap-4">
-                <Button onClick={calculateTotal} className="bg-primary text-primary-foreground hover:bg-primary/90">
-                  Calculate Total
-                </Button>
-                <Button variant="outline" onClick={resetForm}>
-                  Reset
-                </Button>
-                <Button onClick={handleSave} className="ml-auto">
-                  Save
-                </Button>
-              </div>
+            <div className="flex justify-end mt-6">
+              <Button onClick={handleSave} className="bg-primary text-primary-foreground hover:bg-primary/90">
+                Save
+              </Button>
             </div>
           </CardContent>
         </Card>
