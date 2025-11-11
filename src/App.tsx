@@ -11,6 +11,7 @@ import Comparisons from "./pages/Comparisons";
 import ComparisonCalculation from "./pages/ComparisonCalculation";
 import RehabEstimator from "./pages/RehabEstimator";
 import CreateRehabEstimate from "./pages/CreateRehabEstimate";
+import CreateMaxBid from "./pages/CreateMaxBid";
 import MaxBid from "./pages/MaxBid";
 import Reports from "./pages/Reports";
 import MyProperty from "./pages/MyProperty";
@@ -33,6 +34,7 @@ const App = () => (
           <Route path="/comparison-calculation" element={<ComparisonCalculation />} />
           <Route path="/rehab-estimator" element={<RehabEstimator />} />
           <Route path="/create-rehab-estimate" element={<CreateRehabEstimate />} />
+          <Route path="/create-max-bid" element={<CreateMaxBid />} />
           <Route path="/max-bid" element={<MaxBid />} />
           <Route path="/reports" element={<Reports />} />
           <Route path="/my-property" element={<MyProperty />} />
