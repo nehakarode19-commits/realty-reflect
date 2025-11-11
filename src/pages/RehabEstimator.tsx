@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Edit, Trash2, SlidersHorizontal, ChevronDown } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const rehabProperties = [
   {
@@ -53,6 +54,8 @@ const rehabProperties = [
 ];
 
 const RehabEstimator = () => {
+  const navigate = useNavigate();
+
   return (
     <Layout>
       <div className="space-y-6">
@@ -60,7 +63,10 @@ const RehabEstimator = () => {
           <div>
             <h1 className="text-3xl font-bold text-foreground">Rehab Estimator</h1>
           </div>
-          <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
+          <Button 
+            className="bg-primary text-primary-foreground hover:bg-primary/90"
+            onClick={() => navigate("/create-rehab-estimate")}
+          >
             Create
           </Button>
         </div>
