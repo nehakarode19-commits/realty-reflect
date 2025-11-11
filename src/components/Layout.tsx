@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { NavLink } from "@/components/NavLink";
-import { Building2, LayoutDashboard, Home, Plus, BarChart3, Calculator, DollarSign, FileText, LogOut } from "lucide-react";
+import { Building2, LayoutDashboard, Home, BarChart3, Calculator, DollarSign, FileText, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 
@@ -18,11 +18,12 @@ const Layout = ({ children }: LayoutProps) => {
   const navItems = [
     { to: "/dashboard", icon: LayoutDashboard, label: "Dashboard" },
     { to: "/properties", icon: Home, label: "Property Master" },
-    { to: "/create-property", icon: Plus, label: "Add Property" },
-    { to: "/comparisons", icon: BarChart3, label: "Comparisons" },
+    { to: "/comparisons", icon: BarChart3, label: "Comparison Property Master" },
+    { to: "/comparison-calculation", icon: Calculator, label: "Comparison Calculation" },
     { to: "/rehab-estimator", icon: Calculator, label: "Rehab Estimator" },
-    { to: "/max-bid", icon: DollarSign, label: "Max Bid" },
+    { to: "/max-bid", icon: DollarSign, label: "Max Bid Calculation" },
     { to: "/reports", icon: FileText, label: "Reports" },
+    { to: "/my-property", icon: Building2, label: "My Property" },
   ];
 
   return (

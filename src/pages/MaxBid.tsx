@@ -1,128 +1,128 @@
 import Layout from "@/components/Layout";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { toast } from "sonner";
-import { DollarSign } from "lucide-react";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Edit, Trash2, SlidersHorizontal, ChevronDown } from "lucide-react";
+
+const maxBidProperties = [
+  {
+    id: 1,
+    propertyAddress: "123 Maple Street, Springfield, USA",
+    minBid: "$43",
+    arv: "--",
+    rehab: "--",
+    liens: "$1,500",
+    cash4keys: "$2,000",
+    tts: "--",
+    maxBid: "$3,500",
+  },
+  {
+    id: 2,
+    propertyAddress: "456 Oak Avenue, Shelbyville, USA",
+    minBid: "$30",
+    arv: "--",
+    rehab: "--",
+    liens: "$1,800",
+    cash4keys: "$2,200",
+    tts: "--",
+    maxBid: "$3,800",
+  },
+  {
+    id: 3,
+    propertyAddress: "789 Pine Road, Capital City, USA",
+    minBid: "$50",
+    arv: "--",
+    rehab: "--",
+    liens: "--",
+    cash4keys: "$2,000",
+    tts: "$2,500",
+    maxBid: "$4,000",
+  },
+  {
+    id: 4,
+    propertyAddress: "321 Birch Blvd, Metropolis, USA",
+    minBid: "$27",
+    arv: "--",
+    rehab: "--",
+    liens: "--",
+    cash4keys: "$1,600",
+    tts: "$2,100",
+    maxBid: "$3,600",
+  },
+  {
+    id: 5,
+    propertyAddress: "654 Cedar Lane, Gotham, USA",
+    minBid: "$40",
+    arv: "--",
+    rehab: "--",
+    liens: "--",
+    cash4keys: "$1,900",
+    tts: "$2,300",
+    maxBid: "$3,900",
+  },
+];
 
 const MaxBid = () => {
-  const handleCalculate = (e: React.FormEvent) => {
-    e.preventDefault();
-    toast.success("Max bid calculated!");
-  };
-
   return (
     <Layout>
-      <div className="space-y-6 max-w-3xl">
-        <div>
-          <h1 className="text-3xl font-bold text-foreground">Max Bid Calculator</h1>
-          <p className="text-muted-foreground mt-1">Calculate your maximum bid for properties</p>
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold text-foreground">Max Bid Calculation</h1>
+          </div>
+        </div>
+
+        <div className="flex items-center gap-2">
+          <Button variant="outline" className="gap-2">
+            <SlidersHorizontal className="w-4 h-4" />
+            Filters
+            <ChevronDown className="w-4 h-4" />
+          </Button>
         </div>
 
         <Card className="shadow-lg">
-          <CardHeader>
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center">
-                <DollarSign className="w-6 h-6 text-primary-foreground" />
-              </div>
-              <CardTitle>Calculation Parameters</CardTitle>
+          <CardContent className="p-0">
+            <div className="overflow-x-auto">
+              <Table>
+                <TableHeader>
+                  <TableRow className="bg-muted/50">
+                    <TableHead className="font-semibold text-foreground">PROPERTY ADDRESS</TableHead>
+                    <TableHead className="font-semibold text-foreground">MIN BID</TableHead>
+                    <TableHead className="font-semibold text-foreground">ARV</TableHead>
+                    <TableHead className="font-semibold text-foreground">REHAB</TableHead>
+                    <TableHead className="font-semibold text-foreground">LIENS</TableHead>
+                    <TableHead className="font-semibold text-foreground">CASH4KEYS</TableHead>
+                    <TableHead className="font-semibold text-foreground">TTS</TableHead>
+                    <TableHead className="font-semibold text-foreground">MAX BID</TableHead>
+                    <TableHead className="font-semibold text-foreground text-right">ACTION</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {maxBidProperties.map((property) => (
+                    <TableRow key={property.id}>
+                      <TableCell className="font-medium">{property.propertyAddress}</TableCell>
+                      <TableCell>{property.minBid}</TableCell>
+                      <TableCell>{property.arv}</TableCell>
+                      <TableCell>{property.rehab}</TableCell>
+                      <TableCell>{property.liens}</TableCell>
+                      <TableCell>{property.cash4keys}</TableCell>
+                      <TableCell>{property.tts}</TableCell>
+                      <TableCell className="font-semibold">{property.maxBid}</TableCell>
+                      <TableCell>
+                        <div className="flex items-center justify-end gap-2">
+                          <Button variant="ghost" size="icon">
+                            <Edit className="w-4 h-4" />
+                          </Button>
+                          <Button variant="ghost" size="icon">
+                            <Trash2 className="w-4 h-4 text-destructive" />
+                          </Button>
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
             </div>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={handleCalculate} className="space-y-6">
-              <div className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="arv">After Repair Value (ARV)</Label>
-                  <Input
-                    id="arv"
-                    type="number"
-                    placeholder="Enter ARV"
-                    required
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="rehab">Rehab Costs</Label>
-                  <Input
-                    id="rehab"
-                    type="number"
-                    placeholder="Enter rehab costs"
-                    required
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="profit">Desired Profit Margin (%)</Label>
-                  <Input
-                    id="profit"
-                    type="number"
-                    placeholder="e.g., 20"
-                    defaultValue={20}
-                    required
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="holdingCosts">Holding Costs</Label>
-                  <Input
-                    id="holdingCosts"
-                    type="number"
-                    placeholder="Monthly holding costs"
-                    required
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="closingCosts">Closing Costs (%)</Label>
-                  <Input
-                    id="closingCosts"
-                    type="number"
-                    placeholder="e.g., 3"
-                    defaultValue={3}
-                    required
-                  />
-                </div>
-              </div>
-
-              <div className="pt-6 border-t border-border space-y-4">
-                <div className="bg-muted p-6 rounded-lg space-y-3">
-                  <div className="flex items-center justify-between text-sm">
-                    <span className="text-muted-foreground">ARV</span>
-                    <span className="font-semibold">$185,000</span>
-                  </div>
-                  <div className="flex items-center justify-between text-sm">
-                    <span className="text-muted-foreground">- Rehab Costs</span>
-                    <span className="font-semibold">$42,000</span>
-                  </div>
-                  <div className="flex items-center justify-between text-sm">
-                    <span className="text-muted-foreground">- Profit (20%)</span>
-                    <span className="font-semibold">$37,000</span>
-                  </div>
-                  <div className="flex items-center justify-between text-sm">
-                    <span className="text-muted-foreground">- Holding Costs</span>
-                    <span className="font-semibold">$7,500</span>
-                  </div>
-                  <div className="flex items-center justify-between text-sm">
-                    <span className="text-muted-foreground">- Closing Costs (3%)</span>
-                    <span className="font-semibold">$5,550</span>
-                  </div>
-                  <div className="pt-3 border-t border-border flex items-center justify-between">
-                    <span className="text-lg font-semibold">Maximum Bid</span>
-                    <span className="text-3xl font-bold text-primary">$92,950</span>
-                  </div>
-                </div>
-
-                <div className="flex gap-4">
-                  <Button type="submit" className="bg-gradient-to-r from-primary to-secondary">
-                    Calculate Max Bid
-                  </Button>
-                  <Button type="button" variant="outline">
-                    Reset
-                  </Button>
-                </div>
-              </div>
-            </form>
           </CardContent>
         </Card>
       </div>
