@@ -57,9 +57,19 @@ const Comparisons = () => {
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <h1 className="text-3xl font-bold text-foreground">Comparison Property Master</h1>
-          <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
-            Upload
-          </Button>
+          <div className="flex items-center gap-3">
+            <Button 
+              variant="outline"
+              className="bg-[#3d3d7a] text-white hover:bg-[#3d3d7a]/90 border-[#3d3d7a]"
+            >
+              Upload
+            </Button>
+            <Button 
+              className="bg-[#3d3d7a] text-white hover:bg-[#3d3d7a]/90"
+            >
+              + Add Comparison
+            </Button>
+          </div>
         </div>
 
         <Card className="shadow-lg">
@@ -109,9 +119,12 @@ const Comparisons = () => {
                 </TableBody>
               </Table>
             </div>
-            <div className="mt-6">
+            <div className="mt-6 flex justify-between items-center">
               <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
                 Save
+              </Button>
+              <Button variant="outline">
+                Cancel
               </Button>
             </div>
           </CardContent>
