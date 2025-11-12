@@ -1,9 +1,7 @@
 import Layout from "@/components/Layout";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Edit, Trash2, Eye, Search } from "lucide-react";
+import { Edit, Trash2, Search } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useNavigate } from "react-router-dom";
 
@@ -98,87 +96,93 @@ const Properties = () => {
     <Layout>
       <div className="space-y-6">
         <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-foreground">Property Master</h1>
-            <p className="text-muted-foreground mt-1">Manage all your investment properties</p>
+          <h1 className="text-3xl font-bold text-foreground">Property Master</h1>
+          <div className="flex items-center gap-3">
+            <Button 
+              variant="outline"
+              className="bg-[#3d3d7a] text-white hover:bg-[#3d3d7a]/90 border-[#3d3d7a]"
+            >
+              Upload
+            </Button>
+            <Button 
+              className="bg-[#3d3d7a] text-white hover:bg-[#3d3d7a]/90"
+              onClick={() => navigate("/create-property")}
+            >
+              + Add Property
+            </Button>
           </div>
-          <Button 
-            className="bg-gradient-to-r from-primary to-secondary"
-            onClick={() => navigate("/create-property")}
-          >
-            Add New Property
-          </Button>
         </div>
 
-        <Card className="shadow-lg">
-          <CardHeader>
-            <div className="flex items-center gap-4">
-              <div className="relative flex-1 max-w-md">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-                <Input
-                  placeholder="Search by case no, parcel ID, or owner..."
-                  className="pl-10"
-                />
-              </div>
-            </div>
-          </CardHeader>
-          <CardContent>
-            <div className="overflow-x-auto">
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Case No</TableHead>
-                    <TableHead>Parcel ID</TableHead>
-                    <TableHead>Owners</TableHead>
-                    <TableHead>Lien</TableHead>
-                    <TableHead>Min Bid</TableHead>
-                    <TableHead>ARV</TableHead>
-                    <TableHead>Rehab</TableHead>
-                    <TableHead>Max Bid</TableHead>
-                    <TableHead>Status</TableHead>
-                    <TableHead className="text-right">Actions</TableHead>
+        <div className="flex items-center gap-3">
+          <Badge variant="outline" className="flex items-center gap-2 px-3 py-2 text-sm bg-background">
+            SQ FT
+            <button className="ml-1">
+              <Search className="w-4 h-4" />
+            </button>
+          </Badge>
+          <Badge variant="outline" className="flex items-center gap-2 px-3 py-2 text-sm bg-background">
+            City
+            <button className="ml-1">
+              <Search className="w-4 h-4" />
+            </button>
+          </Badge>
+          <Badge variant="outline" className="flex items-center gap-2 px-3 py-2 text-sm bg-background">
+            Min Bid
+            <button className="ml-1">
+              <Search className="w-4 h-4" />
+            </button>
+          </Badge>
+        </div>
+
+        <div className="bg-card rounded-lg border shadow-sm overflow-hidden">
+          <div className="overflow-x-auto">
+            <Table>
+              <TableHeader>
+                <TableRow className="bg-muted/50">
+                  <TableHead>NO.</TableHead>
+                  <TableHead>CASE NO</TableHead>
+                  <TableHead>PARCEL ID</TableHead>
+                  <TableHead>OWNERS</TableHead>
+                  <TableHead>LIEN</TableHead>
+                  <TableHead>MIN BID</TableHead>
+                  <TableHead>ARV</TableHead>
+                  <TableHead>REHAB</TableHead>
+                  <TableHead>MAX BID</TableHead>
+                  <TableHead>STATUS</TableHead>
+                  <TableHead>ACTION</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {properties.map((property, index) => (
+                  <TableRow key={property.id}>
+                    <TableCell>{index + 1}</TableCell>
+                    <TableCell className="font-medium">{property.caseNo}</TableCell>
+                    <TableCell className="font-mono text-sm">
+                      {property.parcelId}
+                    </TableCell>
+                    <TableCell>{property.owners}</TableCell>
+                    <TableCell>{property.lien.toLocaleString()}</TableCell>
+                    <TableCell>{property.minBid.toLocaleString()}</TableCell>
+                    <TableCell>{property.arv.toLocaleString()}</TableCell>
+                    <TableCell>{property.rehab.toLocaleString()}</TableCell>
+                    <TableCell>{property.maxBid.toLocaleString()}</TableCell>
+                    <TableCell>{property.maxBid.toLocaleString()}</TableCell>
+                    <TableCell>
+                      <div className="flex items-center gap-2">
+                        <Button variant="ghost" size="icon" className="h-8 w-8">
+                          <Edit className="w-4 h-4 text-muted-foreground" />
+                        </Button>
+                        <Button variant="ghost" size="icon" className="h-8 w-8">
+                          <Trash2 className="w-4 h-4 text-muted-foreground" />
+                        </Button>
+                      </div>
+                    </TableCell>
                   </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {properties.map((property) => (
-                    <TableRow key={property.id}>
-                      <TableCell className="font-medium">{property.caseNo}</TableCell>
-                      <TableCell className="font-mono text-sm">
-                        {property.parcelId}
-                      </TableCell>
-                      <TableCell>{property.owners}</TableCell>
-                      <TableCell>{formatCurrency(property.lien)}</TableCell>
-                      <TableCell>{formatCurrency(property.minBid)}</TableCell>
-                      <TableCell>{formatCurrency(property.arv)}</TableCell>
-                      <TableCell>{formatCurrency(property.rehab)}</TableCell>
-                      <TableCell className="font-semibold text-primary">
-                        {formatCurrency(property.maxBid)}
-                      </TableCell>
-                      <TableCell>
-                        <Badge className={getStatusColor(property.status)}>
-                          {property.status}
-                        </Badge>
-                      </TableCell>
-                      <TableCell>
-                        <div className="flex items-center justify-end gap-2">
-                          <Button variant="ghost" size="icon">
-                            <Eye className="w-4 h-4" />
-                          </Button>
-                          <Button variant="ghost" size="icon">
-                            <Edit className="w-4 h-4" />
-                          </Button>
-                          <Button variant="ghost" size="icon">
-                            <Trash2 className="w-4 h-4 text-destructive" />
-                          </Button>
-                        </div>
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </div>
-          </CardContent>
-        </Card>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
+        </div>
       </div>
     </Layout>
   );
