@@ -1,45 +1,44 @@
 import Layout from "@/components/Layout";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Edit, Trash2, Plus, Search } from "lucide-react";
+import { Edit, Trash2 } from "lucide-react";
 
 const comparisons = [
   {
     id: 1,
-    address: "123 Main St, City",
+    propertyName: "Sunset Villa",
     sqft: 1500,
-    bedBath: "3/2",
+    bed: 3,
+    bath: 2,
     yearBuilt: 2005,
-    dateSold: "2024-08-15",
-    distance: "0.5 mi",
+    yearSold: 2024,
     salesPrice: 185000,
-    psf: 123,
+    perSqFtPrice: 123,
     notes: "Good condition",
   },
   {
     id: 2,
-    address: "456 Oak Ave, City",
+    propertyName: "Oak Manor",
     sqft: 1600,
-    bedBath: "3/2",
+    bed: 3,
+    bath: 2,
     yearBuilt: 2008,
-    dateSold: "2024-07-20",
-    distance: "0.8 mi",
+    yearSold: 2024,
     salesPrice: 195000,
-    psf: 122,
+    perSqFtPrice: 122,
     notes: "Recently renovated",
   },
   {
     id: 3,
-    address: "789 Pine Dr, City",
+    propertyName: "Pine Residence",
     sqft: 1450,
-    bedBath: "3/2",
+    bed: 3,
+    bath: 2,
     yearBuilt: 2003,
-    dateSold: "2024-09-10",
-    distance: "1.2 mi",
+    yearSold: 2024,
     salesPrice: 178000,
-    psf: 123,
+    perSqFtPrice: 123,
     notes: "Needs minor repairs",
   },
 ];
@@ -57,58 +56,43 @@ const Comparisons = () => {
     <Layout>
       <div className="space-y-6">
         <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-foreground">Comparison Property Master</h1>
-            <p className="text-muted-foreground mt-1">Analyze comparable properties</p>
-          </div>
-          <Button className="bg-gradient-to-r from-primary to-secondary">
-            <Plus className="w-4 h-4 mr-2" />
-            Add Comparison
+          <h1 className="text-3xl font-bold text-foreground">Comparison Property Master</h1>
+          <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
+            Upload
           </Button>
         </div>
 
         <Card className="shadow-lg">
-          <CardHeader>
-            <div className="flex items-center gap-4">
-              <div className="relative flex-1 max-w-md">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-                <Input
-                  placeholder="Search by address..."
-                  className="pl-10"
-                />
-              </div>
-            </div>
-          </CardHeader>
-          <CardContent>
+          <CardContent className="p-6">
             <div className="overflow-x-auto">
               <Table>
                 <TableHeader>
-                  <TableRow>
-                    <TableHead>Address</TableHead>
-                    <TableHead>SQFT</TableHead>
-                    <TableHead>Bed/Bath</TableHead>
-                    <TableHead>Year Built</TableHead>
-                    <TableHead>Date Sold</TableHead>
-                    <TableHead>Distance</TableHead>
-                    <TableHead>Sales Price</TableHead>
-                    <TableHead>PSF</TableHead>
-                    <TableHead>Notes</TableHead>
-                    <TableHead className="text-right">Actions</TableHead>
+                  <TableRow className="bg-muted/50">
+                    <TableHead className="font-semibold">Property Name</TableHead>
+                    <TableHead className="font-semibold">Sq Ft</TableHead>
+                    <TableHead className="font-semibold">Bed</TableHead>
+                    <TableHead className="font-semibold">Bath</TableHead>
+                    <TableHead className="font-semibold">Year Built</TableHead>
+                    <TableHead className="font-semibold">Year Sold</TableHead>
+                    <TableHead className="font-semibold">Sales Price</TableHead>
+                    <TableHead className="font-semibold">Per Sq ft Price</TableHead>
+                    <TableHead className="font-semibold">Notes</TableHead>
+                    <TableHead className="font-semibold text-right">Actions</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {comparisons.map((comp) => (
                     <TableRow key={comp.id}>
-                      <TableCell className="font-medium">{comp.address}</TableCell>
+                      <TableCell className="font-medium">{comp.propertyName}</TableCell>
                       <TableCell>{comp.sqft.toLocaleString()}</TableCell>
-                      <TableCell>{comp.bedBath}</TableCell>
+                      <TableCell>{comp.bed}</TableCell>
+                      <TableCell>{comp.bath}</TableCell>
                       <TableCell>{comp.yearBuilt}</TableCell>
-                      <TableCell>{comp.dateSold}</TableCell>
-                      <TableCell>{comp.distance}</TableCell>
-                      <TableCell className="font-semibold text-primary">
+                      <TableCell>{comp.yearSold}</TableCell>
+                      <TableCell className="font-semibold">
                         {formatCurrency(comp.salesPrice)}
                       </TableCell>
-                      <TableCell>${comp.psf}</TableCell>
+                      <TableCell>${comp.perSqFtPrice}</TableCell>
                       <TableCell className="max-w-xs truncate">{comp.notes}</TableCell>
                       <TableCell>
                         <div className="flex items-center justify-end gap-2">
@@ -124,6 +108,11 @@ const Comparisons = () => {
                   ))}
                 </TableBody>
               </Table>
+            </div>
+            <div className="mt-6">
+              <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
+                Save
+              </Button>
             </div>
           </CardContent>
         </Card>

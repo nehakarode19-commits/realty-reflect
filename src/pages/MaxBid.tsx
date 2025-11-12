@@ -8,58 +8,73 @@ import { useNavigate } from "react-router-dom";
 const maxBidProperties = [
   {
     id: 1,
-    propertyAddress: "123 Maple Street, Springfield, USA",
-    minBid: "$43",
-    arv: "--",
-    rehab: "--",
+    mainProperty: "Sunset Villa",
+    minBid: "$43,000",
+    arv: "$250,000",
+    rehabAmount: "$30,000",
+    rehabCondition: "Good",
     liens: "$1,500",
     cash4keys: "$2,000",
-    tts: "--",
-    maxBid: "$3,500",
+    tts: "$2,800",
+    maxBid: "$180,000",
+    propertyNotes: "Well-maintained property",
+    titleNotes: "Clear title",
   },
   {
     id: 2,
-    propertyAddress: "456 Oak Avenue, Shelbyville, USA",
-    minBid: "$30",
-    arv: "--",
-    rehab: "--",
+    mainProperty: "Oak Manor",
+    minBid: "$30,000",
+    arv: "$320,000",
+    rehabAmount: "$45,000",
+    rehabCondition: "Fair",
     liens: "$1,800",
     cash4keys: "$2,200",
-    tts: "--",
-    maxBid: "$3,800",
+    tts: "$3,000",
+    maxBid: "$240,000",
+    propertyNotes: "Needs kitchen update",
+    titleNotes: "Minor lien to clear",
   },
   {
     id: 3,
-    propertyAddress: "789 Pine Road, Capital City, USA",
-    minBid: "$50",
-    arv: "--",
-    rehab: "--",
-    liens: "--",
+    mainProperty: "Pine Residence",
+    minBid: "$50,000",
+    arv: "$280,000",
+    rehabAmount: "$25,000",
+    rehabCondition: "Excellent",
+    liens: "$0",
     cash4keys: "$2,000",
     tts: "$2,500",
-    maxBid: "$4,000",
+    maxBid: "$210,000",
+    propertyNotes: "Move-in ready",
+    titleNotes: "Clean title",
   },
   {
     id: 4,
-    propertyAddress: "321 Birch Blvd, Metropolis, USA",
-    minBid: "$27",
-    arv: "--",
-    rehab: "--",
-    liens: "--",
+    mainProperty: "Maple Court",
+    minBid: "$27,000",
+    arv: "$190,000",
+    rehabAmount: "$35,000",
+    rehabCondition: "Poor",
+    liens: "$2,500",
     cash4keys: "$1,600",
     tts: "$2,100",
-    maxBid: "$3,600",
+    maxBid: "$130,000",
+    propertyNotes: "Structural issues",
+    titleNotes: "Tax liens present",
   },
   {
     id: 5,
-    propertyAddress: "654 Cedar Lane, Gotham, USA",
-    minBid: "$40",
-    arv: "--",
-    rehab: "--",
-    liens: "--",
+    mainProperty: "Cedar Place",
+    minBid: "$40,000",
+    arv: "$300,000",
+    rehabAmount: "$40,000",
+    rehabCondition: "Good",
+    liens: "$1,000",
     cash4keys: "$1,900",
     tts: "$2,300",
-    maxBid: "$3,900",
+    maxBid: "$220,000",
+    propertyNotes: "Prime location",
+    titleNotes: "Clear after payoff",
   },
 ];
 
@@ -95,28 +110,34 @@ const MaxBid = () => {
               <Table>
                 <TableHeader>
                   <TableRow className="bg-muted/50">
-                    <TableHead className="font-semibold text-foreground">PROPERTY ADDRESS</TableHead>
-                    <TableHead className="font-semibold text-foreground">MIN BID</TableHead>
+                    <TableHead className="font-semibold text-foreground">Main Property</TableHead>
+                    <TableHead className="font-semibold text-foreground">Min Bid</TableHead>
                     <TableHead className="font-semibold text-foreground">ARV</TableHead>
-                    <TableHead className="font-semibold text-foreground">REHAB</TableHead>
-                    <TableHead className="font-semibold text-foreground">LIENS</TableHead>
-                    <TableHead className="font-semibold text-foreground">CASH4KEYS</TableHead>
+                    <TableHead className="font-semibold text-foreground">Rehab Amount</TableHead>
+                    <TableHead className="font-semibold text-foreground">Rehab Condition</TableHead>
+                    <TableHead className="font-semibold text-foreground">Liens</TableHead>
+                    <TableHead className="font-semibold text-foreground">Cash4keys</TableHead>
                     <TableHead className="font-semibold text-foreground">TTS</TableHead>
                     <TableHead className="font-semibold text-foreground">MAX BID</TableHead>
+                    <TableHead className="font-semibold text-foreground">Property Notes</TableHead>
+                    <TableHead className="font-semibold text-foreground">Title Notes</TableHead>
                     <TableHead className="font-semibold text-foreground text-right">ACTION</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {maxBidProperties.map((property) => (
                     <TableRow key={property.id}>
-                      <TableCell className="font-medium">{property.propertyAddress}</TableCell>
+                      <TableCell className="font-medium">{property.mainProperty}</TableCell>
                       <TableCell>{property.minBid}</TableCell>
                       <TableCell>{property.arv}</TableCell>
-                      <TableCell>{property.rehab}</TableCell>
+                      <TableCell>{property.rehabAmount}</TableCell>
+                      <TableCell>{property.rehabCondition}</TableCell>
                       <TableCell>{property.liens}</TableCell>
                       <TableCell>{property.cash4keys}</TableCell>
                       <TableCell>{property.tts}</TableCell>
                       <TableCell className="font-semibold">{property.maxBid}</TableCell>
+                      <TableCell>{property.propertyNotes}</TableCell>
+                      <TableCell>{property.titleNotes}</TableCell>
                       <TableCell>
                         <div className="flex items-center justify-end gap-2">
                           <Button variant="ghost" size="icon">

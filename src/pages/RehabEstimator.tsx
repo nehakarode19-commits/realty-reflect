@@ -8,48 +8,48 @@ import { useNavigate } from "react-router-dom";
 const rehabProperties = [
   {
     id: 1,
-    propertyName: "Mango Heights",
-    propertyAddress: "123 Maple Street, Springfield, USA",
+    mainPropertyName: "Mango Heights",
     sqft: 2000,
-    rehabType: "ok",
-    rehabRange: "$30",
-    roughRehabEstimate: "$1,30,000",
+    rehabType: "Full Renovation",
+    rehabRange: "$50-$75",
+    roughRehabEstimation: "$100,000-$150,000",
+    notes: "Complete interior renovation needed",
   },
   {
     id: 2,
-    propertyName: "Berry Grove",
-    propertyAddress: "456 Oak Avenue, Rivertown, USA",
+    mainPropertyName: "Berry Grove",
     sqft: 1500,
-    rehabType: "good",
-    rehabRange: "$25",
-    roughRehabEstimate: "$37,500",
+    rehabType: "Kitchen & Bath",
+    rehabRange: "$30-$45",
+    roughRehabEstimation: "$45,000-$67,500",
+    notes: "Focus on kitchen and bathrooms",
   },
   {
     id: 3,
-    propertyName: "Citrus Haven",
-    propertyAddress: "789 Pine Lane, Lakeview, USA",
+    mainPropertyName: "Citrus Haven",
     sqft: 3000,
-    rehabType: "excellent",
-    rehabRange: "$35",
-    roughRehabEstimate: "$105,000",
+    rehabType: "Cosmetic",
+    rehabRange: "$15-$25",
+    roughRehabEstimation: "$45,000-$75,000",
+    notes: "Paint and flooring updates",
   },
   {
     id: 4,
-    propertyName: "Tropical Oasis",
-    propertyAddress: "321 Birch Boulevard, Hilltop, USA",
+    mainPropertyName: "Tropical Oasis",
     sqft: 2500,
-    rehabType: "very good",
-    rehabRange: "$28",
-    roughRehabEstimate: "$70,000",
+    rehabType: "Structural",
+    rehabRange: "$75-$100",
+    roughRehabEstimation: "$187,500-$250,000",
+    notes: "Foundation repairs needed",
   },
   {
     id: 5,
-    propertyName: "Mango Vista",
-    propertyAddress: "123 Maple Street, Springfield, USA",
+    mainPropertyName: "Mango Vista",
     sqft: 2000,
-    rehabType: "ok",
-    rehabRange: "$30",
-    roughRehabEstimate: "$1,30,000",
+    rehabType: "Full Renovation",
+    rehabRange: "$50-$75",
+    roughRehabEstimation: "$100,000-$150,000",
+    notes: "Major updates required",
   },
 ];
 
@@ -85,24 +85,24 @@ const RehabEstimator = () => {
               <Table>
                 <TableHeader>
                   <TableRow className="bg-muted/50">
-                    <TableHead className="font-semibold text-foreground">PROPERTY NAME</TableHead>
-                    <TableHead className="font-semibold text-foreground">PROPERTY ADDRESS</TableHead>
-                    <TableHead className="font-semibold text-foreground">SQ FT</TableHead>
-                    <TableHead className="font-semibold text-foreground">REHAB TYPE</TableHead>
-                    <TableHead className="font-semibold text-foreground">REHAB RANGE</TableHead>
-                    <TableHead className="font-semibold text-foreground">ROUGH REHAB ESTIMATE</TableHead>
+                    <TableHead className="font-semibold text-foreground">Main Property Name</TableHead>
+                    <TableHead className="font-semibold text-foreground">Sq ft</TableHead>
+                    <TableHead className="font-semibold text-foreground">Rehab Type</TableHead>
+                    <TableHead className="font-semibold text-foreground">Rehab Range (Per sq ft)</TableHead>
+                    <TableHead className="font-semibold text-foreground">Rough rehab estimation</TableHead>
+                    <TableHead className="font-semibold text-foreground">Notes</TableHead>
                     <TableHead className="font-semibold text-foreground text-right">ACTION</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {rehabProperties.map((property) => (
                     <TableRow key={property.id}>
-                      <TableCell className="font-medium">{property.propertyName}</TableCell>
-                      <TableCell>{property.propertyAddress}</TableCell>
+                      <TableCell className="font-medium">{property.mainPropertyName}</TableCell>
                       <TableCell>{property.sqft.toLocaleString()}</TableCell>
                       <TableCell>{property.rehabType}</TableCell>
                       <TableCell>{property.rehabRange}</TableCell>
-                      <TableCell className="font-semibold">{property.roughRehabEstimate}</TableCell>
+                      <TableCell className="font-semibold">{property.roughRehabEstimation}</TableCell>
+                      <TableCell>{property.notes}</TableCell>
                       <TableCell>
                         <div className="flex items-center justify-end gap-2">
                           <Button variant="ghost" size="icon">
