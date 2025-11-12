@@ -120,7 +120,7 @@ const Comparisons = () => {
               </Table>
             </div>
             <div className="mt-6 flex justify-between items-center">
-              <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
+              <Button className="bg-[#3d3d7a] text-white hover:bg-[#3d3d7a]/90">
                 Save
               </Button>
               <Button variant="outline">
