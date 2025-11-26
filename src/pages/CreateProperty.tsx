@@ -104,14 +104,18 @@ const CreateProperty = () => {
               <CardTitle>Financial Details</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="roughARV">Rough ARV</Label>
+                  <Input id="roughARV" type="number" placeholder="Rough ARV" />
+                </div>
                 <div className="space-y-2">
                   <Label htmlFor="finalARV">Final ARV</Label>
-                  <Input id="finalARV" type="number" placeholder="After Repair Value" required />
+                  <Input id="finalARV" type="number" placeholder="Final ARV" required />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="rehabEstimate">Rehab Estimate</Label>
-                  <Input id="rehabEstimate" type="number" placeholder="Estimated rehab cost" required />
+                  <Input id="rehabEstimate" type="number" placeholder="Rehab Estimate" required />
                 </div>
               </div>
               <div className="space-y-2">
@@ -131,15 +135,36 @@ const CreateProperty = () => {
               <CardTitle>Additional Information</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="photoLink">Photo Link</Label>
-                  <Input id="photoLink" type="url" placeholder="https://..." />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="countySites">County Sites</Label>
-                  <Input id="countySites" type="url" placeholder="https://..." />
-                </div>
+              <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+                {[1, 2, 3, 4, 5].map((index) => (
+                  <div key={index} className="space-y-2">
+                    <Label>Photo:</Label>
+                    <div className="border-2 border-dashed border-border rounded-md h-32 flex items-center justify-center cursor-pointer hover:border-primary transition-colors">
+                      <input
+                        type="file"
+                        id={`photo-${index}`}
+                        className="hidden"
+                        accept="image/*"
+                        onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          if (file) {
+                            toast.success(`Photo ${index} uploaded`);
+                          }
+                        }}
+                      />
+                      <label
+                        htmlFor={`photo-${index}`}
+                        className="cursor-pointer text-4xl text-muted-foreground hover:text-primary"
+                      >
+                        +
+                      </label>
+                    </div>
+                    <div className="space-y-1">
+                      <Label htmlFor={`countySite-${index}`} className="text-xs">County Sites:</Label>
+                      <Input id={`countySite-${index}`} type="url" placeholder="https://..." className="h-8 text-xs" />
+                    </div>
+                  </div>
+                ))}
               </div>
             </CardContent>
           </Card>
