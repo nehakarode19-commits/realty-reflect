@@ -13,19 +13,20 @@ const CreateMaxBid = () => {
   const { toast } = useToast();
   
   const [formData, setFormData] = useState({
-    rehab: "",
-    minBid: "",
-    arv: "",
-    address: "",
+    startingBid: "",
+    propertyName: "",
+    finalArv: "",
     liens: "",
     cash4keys: "",
     tts: "",
     maxBid: "",
     propertyNotes: "",
+    titleNotes: "",
   });
 
-  const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
   const handleSave = () => {
@@ -38,110 +39,140 @@ const CreateMaxBid = () => {
 
   return (
     <Layout>
-      <div className="space-y-6">
-        <div>
-          <h1 className="text-3xl font-bold text-foreground">Max Bid Calculation</h1>
-        </div>
+      <div className="p-6">
+        <h1 className="text-2xl font-semibold mb-6">Calculate Max Bid</h1>
 
-        <Card className="shadow-lg">
+        <Card>
           <CardContent className="p-6">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="space-y-2">
-                <Label htmlFor="rehab">Rehab</Label>
-                <Input
-                  id="rehab"
-                  placeholder="Rehab"
-                  value={formData.rehab}
-                  onChange={(e) => handleInputChange("rehab", e.target.value)}
-                />
+            <div className="space-y-8">
+              {/* Property Information Section */}
+              <div className="space-y-4">
+                <h2 className="text-lg font-semibold">Property Information</h2>
+                
+                <div className="space-y-4">
+                  <h3 className="text-sm font-semibold text-muted-foreground">Basic Information</h3>
+                  <div className="space-y-2">
+                    <Label htmlFor="startingBid">Starting Bid</Label>
+                    <Input
+                      id="startingBid"
+                      name="startingBid"
+                      value={formData.startingBid}
+                      onChange={handleInputChange}
+                      placeholder="Enter starting bid"
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <h3 className="text-sm font-semibold text-muted-foreground">Property Details</h3>
+                  <div className="space-y-2">
+                    <Label htmlFor="propertyName">Property name</Label>
+                    <Input
+                      id="propertyName"
+                      name="propertyName"
+                      value={formData.propertyName}
+                      onChange={handleInputChange}
+                      placeholder="Enter property name"
+                    />
+                  </div>
+                </div>
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="minBid">Min Bid</Label>
-                <Input
-                  id="minBid"
-                  placeholder="Min Bid"
-                  value={formData.minBid}
-                  onChange={(e) => handleInputChange("minBid", e.target.value)}
-                />
+              {/* Financial Details Section */}
+              <div className="space-y-4">
+                <h2 className="text-lg font-semibold">Financial Details</h2>
+                <div className="space-y-2">
+                  <Label htmlFor="finalArv">Final ARV</Label>
+                  <Input
+                    id="finalArv"
+                    name="finalArv"
+                    value={formData.finalArv}
+                    onChange={handleInputChange}
+                    placeholder="Enter final ARV"
+                  />
+                </div>
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="arv">ARV</Label>
-                <Input
-                  id="arv"
-                  placeholder="ARV"
-                  value={formData.arv}
-                  onChange={(e) => handleInputChange("arv", e.target.value)}
-                />
+              {/* Max Bid Calculation Fields Section */}
+              <div className="space-y-4">
+                <h2 className="text-lg font-semibold">Max Bid Calculation Fields</h2>
+                
+                <div className="grid grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="liens">Liens</Label>
+                    <Input
+                      id="liens"
+                      name="liens"
+                      value={formData.liens}
+                      onChange={handleInputChange}
+                      placeholder="Enter liens amount"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="cash4keys">Cash4Keys</Label>
+                    <Input
+                      id="cash4keys"
+                      name="cash4keys"
+                      value={formData.cash4keys}
+                      onChange={handleInputChange}
+                      placeholder="Enter cash for keys amount"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="tts">TTS</Label>
+                    <Input
+                      id="tts"
+                      name="tts"
+                      value={formData.tts}
+                      onChange={handleInputChange}
+                      placeholder="Enter TTS amount"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="maxBid">Max Bid</Label>
+                    <Input
+                      id="maxBid"
+                      name="maxBid"
+                      value={formData.maxBid}
+                      onChange={handleInputChange}
+                      placeholder="Enter max bid"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="propertyNotes">Property Notes</Label>
+                    <Textarea
+                      id="propertyNotes"
+                      name="propertyNotes"
+                      value={formData.propertyNotes}
+                      onChange={handleInputChange}
+                      placeholder="Enter property notes"
+                      className="min-h-[100px]"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="titleNotes">Title Notes</Label>
+                    <Textarea
+                      id="titleNotes"
+                      name="titleNotes"
+                      value={formData.titleNotes}
+                      onChange={handleInputChange}
+                      placeholder="Enter title notes"
+                      className="min-h-[100px]"
+                    />
+                  </div>
+                </div>
               </div>
 
-              <div className="space-y-2 md:col-span-3">
-                <Label htmlFor="address">Address</Label>
-                <Input
-                  id="address"
-                  placeholder="From Date"
-                  value={formData.address}
-                  onChange={(e) => handleInputChange("address", e.target.value)}
-                />
+              <div className="flex gap-3">
+                <Button onClick={handleSave}>Save</Button>
+                <Button variant="outline" onClick={() => navigate("/max-bid")}>Cancel</Button>
               </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="liens">Liens</Label>
-                <Input
-                  id="liens"
-                  placeholder="Liens"
-                  value={formData.liens}
-                  onChange={(e) => handleInputChange("liens", e.target.value)}
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="cash4keys">Cash4keys</Label>
-                <Input
-                  id="cash4keys"
-                  placeholder="Cash4keys"
-                  value={formData.cash4keys}
-                  onChange={(e) => handleInputChange("cash4keys", e.target.value)}
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="tts">TTS</Label>
-                <Input
-                  id="tts"
-                  placeholder="TTS"
-                  value={formData.tts}
-                  onChange={(e) => handleInputChange("tts", e.target.value)}
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="maxBid">MAX BID</Label>
-                <Input
-                  id="maxBid"
-                  placeholder="Max Bid"
-                  value={formData.maxBid}
-                  onChange={(e) => handleInputChange("maxBid", e.target.value)}
-                />
-              </div>
-
-              <div className="space-y-2 md:col-span-2">
-                <Label htmlFor="propertyNotes">Property Notes</Label>
-                <Textarea
-                  id="propertyNotes"
-                  placeholder="Property Notes"
-                  value={formData.propertyNotes}
-                  onChange={(e) => handleInputChange("propertyNotes", e.target.value)}
-                  className="min-h-[80px]"
-                />
-              </div>
-            </div>
-
-            <div className="flex justify-end mt-6">
-              <Button onClick={handleSave} className="bg-primary text-primary-foreground hover:bg-primary/90">
-                Save
-              </Button>
             </div>
           </CardContent>
         </Card>
