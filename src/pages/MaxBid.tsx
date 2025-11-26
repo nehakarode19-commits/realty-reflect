@@ -148,7 +148,7 @@ const MaxBid = () => {
                           <Button 
                             variant="ghost" 
                             size="icon"
-                            onClick={() => toast.info(`Edit ${property.mainProperty}`)}
+                            onClick={() => navigate("/create-max-bid")}
                           >
                             <Edit className="w-4 h-4" />
                           </Button>
