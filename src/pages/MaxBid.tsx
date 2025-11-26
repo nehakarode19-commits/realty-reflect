@@ -1,173 +1,190 @@
 import Layout from "@/components/Layout";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Edit, Trash2, SlidersHorizontal, ChevronDown } from "lucide-react";
+import { Edit, Download, Search } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import { useState } from "react";
 
 const maxBidProperties = [
   {
     id: 1,
-    mainProperty: "Sunset Villa",
-    minBid: "$43,000",
-    arv: "$250,000",
-    rehabAmount: "$30,000",
-    rehabCondition: "Good",
-    liens: "$1,500",
-    cash4keys: "$2,000",
-    tts: "$2,800",
-    maxBid: "$180,000",
-    propertyNotes: "Well-maintained property",
-    titleNotes: "Clear title",
+    date: "01-11-2025",
+    propertyName: "Oaks Villa",
+    lienAmount: "50000",
+    sqFootage: "555",
+    status: "Pending",
   },
   {
     id: 2,
-    mainProperty: "Oak Manor",
-    minBid: "$30,000",
-    arv: "$320,000",
-    rehabAmount: "$45,000",
-    rehabCondition: "Fair",
-    liens: "$1,800",
-    cash4keys: "$2,200",
-    tts: "$3,000",
-    maxBid: "$240,000",
-    propertyNotes: "Needs kitchen update",
-    titleNotes: "Minor lien to clear",
+    date: "01-04-2025",
+    propertyName: "sunset villa",
+    lienAmount: "54350",
+    sqFootage: "32",
+    status: "Pending",
   },
   {
     id: 3,
-    mainProperty: "Pine Residence",
-    minBid: "$50,000",
-    arv: "$280,000",
-    rehabAmount: "$25,000",
-    rehabCondition: "Excellent",
-    liens: "$0",
-    cash4keys: "$2,000",
-    tts: "$2,500",
-    maxBid: "$210,000",
-    propertyNotes: "Move-in ready",
-    titleNotes: "Clean title",
+    date: "01-11-2025",
+    propertyName: "ks charcoal",
+    lienAmount: "50000",
+    sqFootage: "6000",
+    status: "Pending",
   },
   {
     id: 4,
-    mainProperty: "Maple Court",
-    minBid: "$27,000",
-    arv: "$190,000",
-    rehabAmount: "$35,000",
-    rehabCondition: "Poor",
-    liens: "$2,500",
-    cash4keys: "$1,600",
-    tts: "$2,100",
-    maxBid: "$130,000",
-    propertyNotes: "Structural issues",
-    titleNotes: "Tax liens present",
+    date: "03-05-2025",
+    propertyName: "pine residence",
+    lienAmount: "2000",
+    sqFootage: "54",
+    status: "Completed",
   },
   {
     id: 5,
-    mainProperty: "Cedar Place",
-    minBid: "$40,000",
-    arv: "$300,000",
-    rehabAmount: "$40,000",
-    rehabCondition: "Good",
-    liens: "$1,000",
-    cash4keys: "$1,900",
-    tts: "$2,300",
-    maxBid: "$220,000",
-    propertyNotes: "Prime location",
-    titleNotes: "Clear after payoff",
+    date: "15-11-2025",
+    propertyName: "divine buds",
+    lienAmount: "3500000",
+    sqFootage: "52",
+    status: "Completed",
+  },
+  {
+    id: 6,
+    date: "28-05-2025",
+    propertyName: "palm greens",
+    lienAmount: "5000000",
+    sqFootage: "500",
+    status: "Pending",
+  },
+  {
+    id: 7,
+    date: "01-10-2025",
+    propertyName: "Oaks Villa",
+    lienAmount: "50000",
+    sqFootage: "500",
+    status: "Completed",
   },
 ];
 
 const MaxBid = () => {
   const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const filteredProperties = maxBidProperties.filter(property =>
+    property.propertyName.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <Layout>
-      <div className="space-y-6">
+      <div className="space-y-6 max-w-full">
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold text-foreground">Max Bid Calculation</h1>
           </div>
           <Button 
-            className="bg-primary text-primary-foreground hover:bg-primary/90"
-            onClick={() => navigate("/create-max-bid")}
+            variant="outline"
+            className="bg-[#3d3d7a] text-white hover:bg-[#3d3d7a]/90 border-[#3d3d7a]"
+            onClick={() => toast.info("Export Excel functionality coming soon")}
           >
-            Create
+            <Download className="w-4 h-4 mr-2" />
+            Export Excel
           </Button>
         </div>
 
-        <div className="flex items-center gap-2">
-          <Button 
-            variant="outline" 
-            className="gap-2"
-            onClick={() => toast.info("Filters clicked")}
-          >
-            <SlidersHorizontal className="w-4 h-4" />
-            Filters
-            <ChevronDown className="w-4 h-4" />
-          </Button>
-        </div>
-
+        {/* Search Bar */}
         <Card className="shadow-lg">
+          <CardContent className="p-4">
+            <div className="flex items-center gap-2">
+              <div className="relative flex-1">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                <Input
+                  placeholder="Search by property name..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="pl-9"
+                />
+              </div>
+              <Button 
+                className="bg-[#3d3d7a] text-white hover:bg-[#3d3d7a]/90"
+                onClick={() => toast.info(`Searching for: ${searchQuery}`)}
+              >
+                <Search className="w-4 h-4 mr-2" />
+                Search
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Table */}
+        <Card className="shadow-lg">
+          <CardHeader>
+            <CardTitle>Max Bid Records</CardTitle>
+          </CardHeader>
           <CardContent className="p-0">
             <div className="overflow-x-auto">
               <Table>
                 <TableHeader>
                   <TableRow className="bg-muted/50">
-                    <TableHead className="font-semibold text-foreground">Main Property</TableHead>
-                    <TableHead className="font-semibold text-foreground">Min Bid</TableHead>
-                    <TableHead className="font-semibold text-foreground">ARV</TableHead>
-                    <TableHead className="font-semibold text-foreground">Rehab Amount</TableHead>
-                    <TableHead className="font-semibold text-foreground">Rehab Condition</TableHead>
-                    <TableHead className="font-semibold text-foreground">Liens</TableHead>
-                    <TableHead className="font-semibold text-foreground">Cash4keys</TableHead>
-                    <TableHead className="font-semibold text-foreground">TTS</TableHead>
-                    <TableHead className="font-semibold text-foreground">MAX BID</TableHead>
-                    <TableHead className="font-semibold text-foreground">Property Notes</TableHead>
-                    <TableHead className="font-semibold text-foreground">Title Notes</TableHead>
-                    <TableHead className="font-semibold text-foreground text-right">ACTION</TableHead>
+                    <TableHead className="font-semibold">Date</TableHead>
+                    <TableHead className="font-semibold">Property Name</TableHead>
+                    <TableHead className="font-semibold">Lien Amount</TableHead>
+                    <TableHead className="font-semibold">Sq. Footage</TableHead>
+                    <TableHead className="font-semibold">Status</TableHead>
+                    <TableHead className="font-semibold text-right">Actions</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {maxBidProperties.map((property) => (
-                    <TableRow key={property.id}>
-                      <TableCell className="font-medium">{property.mainProperty}</TableCell>
-                      <TableCell>{property.minBid}</TableCell>
-                      <TableCell>{property.arv}</TableCell>
-                      <TableCell>{property.rehabAmount}</TableCell>
-                      <TableCell>{property.rehabCondition}</TableCell>
-                      <TableCell>{property.liens}</TableCell>
-                      <TableCell>{property.cash4keys}</TableCell>
-                      <TableCell>{property.tts}</TableCell>
-                      <TableCell className="font-semibold">{property.maxBid}</TableCell>
-                      <TableCell>{property.propertyNotes}</TableCell>
-                      <TableCell>{property.titleNotes}</TableCell>
-                      <TableCell>
-                        <div className="flex items-center justify-end gap-2">
-                          <Button 
-                            variant="ghost" 
-                            size="icon"
-                            onClick={() => navigate("/create-max-bid")}
-                          >
-                            <Edit className="w-4 h-4" />
-                          </Button>
-                          <Button 
-                            variant="ghost" 
-                            size="icon"
-                            onClick={() => toast.success(`${property.mainProperty} deleted`)}
-                          >
-                            <Trash2 className="w-4 h-4 text-destructive" />
-                          </Button>
-                        </div>
+                  {filteredProperties.length === 0 ? (
+                    <TableRow>
+                      <TableCell colSpan={6} className="text-center text-muted-foreground py-8">
+                        No properties found
                       </TableCell>
                     </TableRow>
-                  ))}
+                  ) : (
+                    filteredProperties.map((property) => (
+                      <TableRow key={property.id}>
+                        <TableCell>{property.date}</TableCell>
+                        <TableCell className="font-medium">{property.propertyName}</TableCell>
+                        <TableCell>{property.lienAmount}</TableCell>
+                        <TableCell>{property.sqFootage}</TableCell>
+                        <TableCell>
+                          <Badge 
+                            variant={property.status === "Completed" ? "default" : "secondary"}
+                            className={
+                              property.status === "Completed" 
+                                ? "bg-green-100 text-green-800 hover:bg-green-100" 
+                                : "bg-yellow-100 text-yellow-800 hover:bg-yellow-100"
+                            }
+                          >
+                            {property.status}
+                          </Badge>
+                        </TableCell>
+                        <TableCell>
+                          <div className="flex items-center justify-end gap-2">
+                            <Button 
+                              variant="ghost" 
+                              size="icon"
+                              onClick={() => navigate("/create-max-bid")}
+                            >
+                              <Edit className="w-4 h-4" />
+                            </Button>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    ))
+                  )}
                 </TableBody>
               </Table>
             </div>
           </CardContent>
         </Card>
+
+        {/* Pagination Info */}
+        <div className="flex items-center justify-end text-sm text-muted-foreground">
+          <span>1-{filteredProperties.length} of {maxBidProperties.length}</span>
+        </div>
       </div>
     </Layout>
   );
