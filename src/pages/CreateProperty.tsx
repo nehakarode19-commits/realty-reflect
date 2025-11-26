@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Upload } from "lucide-react";
 import { toast } from "sonner";
 
 const CreateProperty = () => {
@@ -16,18 +15,8 @@ const CreateProperty = () => {
   return (
     <Layout>
       <div className="space-y-6 max-w-5xl">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-foreground">Property Information</h1>
-          </div>
-          <Button 
-            type="button"
-            className="bg-[#3d3d7a] text-white hover:bg-[#3d3d7a]/90"
-            onClick={() => toast.info("Upload file to auto-fill property data")}
-          >
-            <Upload className="w-4 h-4 mr-2" />
-            Upload for Auto-Fill
-          </Button>
+        <div>
+          <h1 className="text-3xl font-bold text-foreground">Property Information</h1>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
