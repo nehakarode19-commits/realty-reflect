@@ -8,6 +8,8 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Plus, Edit, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { useState } from "react";
 
 const comparisonProperties = [
   {
@@ -53,6 +55,19 @@ const comparisonProperties = [
 
 const ComparisonCalculation = () => {
   const navigate = useNavigate();
+  const [editDialogOpen, setEditDialogOpen] = useState(false);
+  const [editingProperty, setEditingProperty] = useState<any>(null);
+
+  const handleEdit = (property: any) => {
+    setEditingProperty(property);
+    setEditDialogOpen(true);
+  };
+
+  const handleUpdate = () => {
+    toast.success(`Updated ${editingProperty?.propertyName}`);
+    setEditDialogOpen(false);
+    setEditingProperty(null);
+  };
 
   return (
     <Layout>
@@ -183,7 +198,7 @@ const ComparisonCalculation = () => {
                           <Button 
                             variant="ghost" 
                             size="icon"
-                            onClick={() => toast.info(`Edit ${property.propertyName}`)}
+                            onClick={() => handleEdit(property)}
                           >
                             <Edit className="w-4 h-4" />
                           </Button>
@@ -219,6 +234,104 @@ const ComparisonCalculation = () => {
             Cancel
           </Button>
         </div>
+
+        {/* Edit Dialog */}
+        <Dialog open={editDialogOpen} onOpenChange={setEditDialogOpen}>
+          <DialogContent className="max-w-3xl">
+            <DialogHeader>
+              <DialogTitle>Edit Comparison Property</DialogTitle>
+            </DialogHeader>
+            <div className="space-y-4 py-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="edit-propertyName">Property name:</Label>
+                  <Input 
+                    id="edit-propertyName" 
+                    defaultValue={editingProperty?.propertyName}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="edit-yearBuilt">Year built:</Label>
+                  <Input 
+                    id="edit-yearBuilt" 
+                    defaultValue={editingProperty?.yearBuilt}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="edit-perSqftPrice">Per Sqft Price:</Label>
+                  <Input 
+                    id="edit-perSqftPrice" 
+                    defaultValue={editingProperty?.perSqftPrice}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="edit-yearSold">Year sold:</Label>
+                  <Input 
+                    id="edit-yearSold" 
+                    defaultValue={editingProperty?.yearSold}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="edit-bed">Bed:</Label>
+                  <Input 
+                    id="edit-bed" 
+                    defaultValue={editingProperty?.bed}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="edit-bath">Bath:</Label>
+                  <Input 
+                    id="edit-bath" 
+                    defaultValue={editingProperty?.bath}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="edit-sqFootage">Sq. Footage:</Label>
+                  <Input 
+                    id="edit-sqFootage" 
+                    defaultValue={editingProperty?.sqFootage}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="edit-farFromProperty">Far from main property:</Label>
+                  <Input 
+                    id="edit-farFromProperty" 
+                    defaultValue={editingProperty?.farFromProperty}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="edit-salesPrice">Sales price:</Label>
+                  <Input 
+                    id="edit-salesPrice" 
+                    defaultValue={editingProperty?.salesPrice}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="edit-notes">Notes:</Label>
+                  <Textarea 
+                    id="edit-notes" 
+                    defaultValue={editingProperty?.notes}
+                    className="min-h-[80px]"
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="flex justify-end gap-3">
+              <Button 
+                variant="outline"
+                onClick={() => setEditDialogOpen(false)}
+              >
+                Cancel
+              </Button>
+              <Button 
+                className="bg-[#3d3d7a] text-white hover:bg-[#3d3d7a]/90"
+                onClick={handleUpdate}
+              >
+                Update
+              </Button>
+            </div>
+          </DialogContent>
+        </Dialog>
       </div>
     </Layout>
   );
