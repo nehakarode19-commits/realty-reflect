@@ -7,7 +7,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Plus, Edit, Trash2 } from "lucide-react";
 import { toast } from "sonner";
-import { useNavigate } from "react-router-dom";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { useState } from "react";
 
@@ -54,9 +53,21 @@ const comparisonProperties = [
 ];
 
 const ComparisonCalculation = () => {
-  const navigate = useNavigate();
   const [editDialogOpen, setEditDialogOpen] = useState(false);
   const [editingProperty, setEditingProperty] = useState<any>(null);
+  
+  // Form state
+  const [formData, setFormData] = useState({
+    propertyName: "",
+    perSqftPrice: "",
+    yearBuilt: "",
+    bed: "",
+    bath: "",
+    sqFootage: "",
+    roughARV: "",
+    finalARV: "",
+    notes: "",
+  });
 
   const handleEdit = (property: any) => {
     setEditingProperty(property);
@@ -67,6 +78,21 @@ const ComparisonCalculation = () => {
     toast.success(`Updated ${editingProperty?.propertyName}`);
     setEditDialogOpen(false);
     setEditingProperty(null);
+  };
+
+  const handleCancel = () => {
+    setFormData({
+      propertyName: "",
+      perSqftPrice: "",
+      yearBuilt: "",
+      bed: "",
+      bath: "",
+      sqFootage: "",
+      roughARV: "",
+      finalARV: "",
+      notes: "",
+    });
+    toast.info("Form cleared");
   };
 
   return (
@@ -85,27 +111,62 @@ const ComparisonCalculation = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="propertyName">Property name:</Label>
-                <Input id="propertyName" placeholder="Property name" />
+                <Input 
+                  id="propertyName" 
+                  placeholder="Property name"
+                  value={formData.propertyName}
+                  onChange={(e) => setFormData({ ...formData, propertyName: e.target.value })}
+                />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="perSqftPrice">Per Sqft Price:</Label>
-                <Input id="perSqftPrice" type="number" placeholder="e.g., 150" />
+                <Input 
+                  id="perSqftPrice" 
+                  type="number" 
+                  placeholder="e.g., 150"
+                  value={formData.perSqftPrice}
+                  onChange={(e) => setFormData({ ...formData, perSqftPrice: e.target.value })}
+                />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="yearBuilt">Year built:</Label>
-                <Input id="yearBuilt" type="number" placeholder="e.g., 2005" />
+                <Input 
+                  id="yearBuilt" 
+                  type="number" 
+                  placeholder="e.g., 2005"
+                  value={formData.yearBuilt}
+                  onChange={(e) => setFormData({ ...formData, yearBuilt: e.target.value })}
+                />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="bed">Bed:</Label>
-                <Input id="bed" type="number" placeholder="e.g., 3" />
+                <Input 
+                  id="bed" 
+                  type="number" 
+                  placeholder="e.g., 3"
+                  value={formData.bed}
+                  onChange={(e) => setFormData({ ...formData, bed: e.target.value })}
+                />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="bath">Bath:</Label>
-                <Input id="bath" type="number" placeholder="e.g., 2" />
+                <Input 
+                  id="bath" 
+                  type="number" 
+                  placeholder="e.g., 2"
+                  value={formData.bath}
+                  onChange={(e) => setFormData({ ...formData, bath: e.target.value })}
+                />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="sqFootage">Sq. Footage:</Label>
-                <Input id="sqFootage" type="number" placeholder="e.g., 1500" />
+                <Input 
+                  id="sqFootage" 
+                  type="number" 
+                  placeholder="e.g., 1500"
+                  value={formData.sqFootage}
+                  onChange={(e) => setFormData({ ...formData, sqFootage: e.target.value })}
+                />
               </div>
             </div>
           </CardContent>
@@ -121,7 +182,13 @@ const ComparisonCalculation = () => {
               <div className="space-y-2">
                 <Label htmlFor="roughARV">Rough ARV</Label>
                 <div className="flex gap-2">
-                  <Input id="roughARV" type="number" placeholder="Rough ARV" />
+                  <Input 
+                    id="roughARV" 
+                    type="number" 
+                    placeholder="Rough ARV"
+                    value={formData.roughARV}
+                    onChange={(e) => setFormData({ ...formData, roughARV: e.target.value })}
+                  />
                   <Button 
                     variant="outline" 
                     className="bg-gradient-to-r from-primary to-secondary"
@@ -133,12 +200,24 @@ const ComparisonCalculation = () => {
               </div>
               <div className="space-y-2">
                 <Label htmlFor="finalARV">Final ARV</Label>
-                <Input id="finalARV" type="number" placeholder="Calculated automatically" disabled />
+                <Input 
+                  id="finalARV" 
+                  type="number" 
+                  placeholder="Calculated automatically" 
+                  value={formData.finalARV}
+                  disabled 
+                />
               </div>
             </div>
             <div className="space-y-2">
               <Label htmlFor="notes">Notes</Label>
-              <Textarea id="notes" placeholder="Additional notes or comments..." rows={4} />
+              <Textarea 
+                id="notes" 
+                placeholder="Additional notes or comments..." 
+                rows={4}
+                value={formData.notes}
+                onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
+              />
             </div>
 
             {/* Calculated Values */}
@@ -231,7 +310,7 @@ const ComparisonCalculation = () => {
           </Button>
           <Button 
             variant="outline"
-            onClick={() => navigate("/comparisons")}
+            onClick={handleCancel}
           >
             Cancel
           </Button>
