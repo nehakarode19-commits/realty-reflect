@@ -104,26 +104,9 @@ const MyProperty = () => {
   return (
     <Layout>
       <div className="space-y-6">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-foreground">My Property</h1>
-            <p className="text-muted-foreground mt-1">Manage your property portfolio with detailed tracking</p>
-          </div>
-          <div className="flex items-center gap-3">
-            <Button 
-              variant="outline"
-              className="bg-[#3d3d7a] text-white hover:bg-[#3d3d7a]/90 border-[#3d3d7a]"
-              onClick={() => toast.info("Upload functionality coming soon")}
-            >
-              Upload
-            </Button>
-            <Button 
-              className="bg-[#3d3d7a] text-white hover:bg-[#3d3d7a]/90"
-              onClick={() => navigate("/create-property")}
-            >
-              + Add Property
-            </Button>
-          </div>
+        <div>
+          <h1 className="text-3xl font-bold text-foreground">My Property</h1>
+          <p className="text-muted-foreground mt-1">Manage your property portfolio with detailed tracking</p>
         </div>
 
         <Card className="shadow-lg">
