@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { RefreshCw, Columns, Settings, Edit, Download, Search } from "lucide-react";
 import { toast } from "sonner";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const comparisons = [
   {
@@ -67,6 +68,7 @@ const comparisons = [
 ];
 
 const Comparisons = () => {
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
 
   const formatCurrency = (value: number | null) => {
@@ -187,7 +189,7 @@ const Comparisons = () => {
                           <Button 
                             variant="ghost" 
                             size="icon"
-                            onClick={() => toast.info(`Edit ${comp.propertyName}`)}
+                            onClick={() => navigate("/comparison-calculation")}
                           >
                             <Edit className="w-4 h-4" />
                           </Button>
