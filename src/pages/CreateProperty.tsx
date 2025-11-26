@@ -125,7 +125,11 @@ const CreateProperty = () => {
             <Button type="submit" className="bg-gradient-to-r from-primary to-secondary">
               Save Property
             </Button>
-            <Button type="button" variant="outline">
+            <Button 
+              type="button" 
+              variant="outline"
+              onClick={() => window.history.back()}
+            >
               Cancel
             </Button>
           </div>

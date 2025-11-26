@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Edit, Trash2, FileText, Paperclip, Eye } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 const myProperties = [
   {
@@ -84,6 +86,8 @@ const myProperties = [
 ];
 
 const MyProperty = () => {
+  const navigate = useNavigate();
+  
   const getStatusColor = (status: string) => {
     switch (status) {
       case "Active":
@@ -109,11 +113,13 @@ const MyProperty = () => {
             <Button 
               variant="outline"
               className="bg-[#3d3d7a] text-white hover:bg-[#3d3d7a]/90 border-[#3d3d7a]"
+              onClick={() => toast.info("Upload functionality coming soon")}
             >
               Upload
             </Button>
             <Button 
               className="bg-[#3d3d7a] text-white hover:bg-[#3d3d7a]/90"
+              onClick={() => navigate("/create-property")}
             >
               + Add Property
             </Button>
@@ -161,26 +167,51 @@ const MyProperty = () => {
                         </Badge>
                       </TableCell>
                       <TableCell>
-                        <Button variant="ghost" size="sm" className="gap-2">
+                        <Button 
+                          variant="ghost" 
+                          size="sm" 
+                          className="gap-2"
+                          onClick={() => toast.info(`View ${property.documents} documents`)}
+                        >
                           <Paperclip className="w-4 h-4" />
                           {property.documents}
                         </Button>
                       </TableCell>
                       <TableCell>
-                        <Button variant="ghost" size="sm" className="gap-2">
+                        <Button 
+                          variant="ghost" 
+                          size="sm" 
+                          className="gap-2"
+                          onClick={() => toast.info(`Notes: ${property.notes}`)}
+                        >
                           <FileText className="w-4 h-4" />
                           View
                         </Button>
                       </TableCell>
                       <TableCell>
                         <div className="flex items-center justify-end gap-2">
-                          <Button variant="ghost" size="icon" title="View Details">
+                          <Button 
+                            variant="ghost" 
+                            size="icon" 
+                            title="View Details"
+                            onClick={() => toast.info(`View details for ${property.caseNo}`)}
+                          >
                             <Eye className="w-4 h-4" />
                           </Button>
-                          <Button variant="ghost" size="icon" title="Edit">
+                          <Button 
+                            variant="ghost" 
+                            size="icon" 
+                            title="Edit"
+                            onClick={() => toast.info(`Edit property ${property.caseNo}`)}
+                          >
                             <Edit className="w-4 h-4" />
                           </Button>
-                          <Button variant="ghost" size="icon" title="Delete">
+                          <Button 
+                            variant="ghost" 
+                            size="icon" 
+                            title="Delete"
+                            onClick={() => toast.success(`Property ${property.caseNo} deleted`)}
+                          >
                             <Trash2 className="w-4 h-4 text-destructive" />
                           </Button>
                         </div>

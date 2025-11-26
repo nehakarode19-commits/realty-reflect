@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Edit, Trash2, Search } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 const properties = [
   {
@@ -101,6 +102,7 @@ const Properties = () => {
             <Button 
               variant="outline"
               className="bg-[#3d3d7a] text-white hover:bg-[#3d3d7a]/90 border-[#3d3d7a]"
+              onClick={() => toast.info("Upload functionality coming soon")}
             >
               Upload
             </Button>
@@ -116,19 +118,19 @@ const Properties = () => {
         <div className="flex items-center gap-3">
           <Badge variant="outline" className="flex items-center gap-2 px-3 py-2 text-sm bg-background">
             SQ FT
-            <button className="ml-1">
+            <button className="ml-1" onClick={() => toast.info("SQ FT search")}>
               <Search className="w-4 h-4" />
             </button>
           </Badge>
           <Badge variant="outline" className="flex items-center gap-2 px-3 py-2 text-sm bg-background">
             City
-            <button className="ml-1">
+            <button className="ml-1" onClick={() => toast.info("City search")}>
               <Search className="w-4 h-4" />
             </button>
           </Badge>
           <Badge variant="outline" className="flex items-center gap-2 px-3 py-2 text-sm bg-background">
             Min Bid
-            <button className="ml-1">
+            <button className="ml-1" onClick={() => toast.info("Min Bid search")}>
               <Search className="w-4 h-4" />
             </button>
           </Badge>
@@ -169,10 +171,20 @@ const Properties = () => {
                     <TableCell>{property.maxBid.toLocaleString()}</TableCell>
                     <TableCell>
                       <div className="flex items-center gap-2">
-                        <Button variant="ghost" size="icon" className="h-8 w-8">
+                        <Button 
+                          variant="ghost" 
+                          size="icon" 
+                          className="h-8 w-8"
+                          onClick={() => toast.info(`Edit property ${property.caseNo}`)}
+                        >
                           <Edit className="w-4 h-4 text-muted-foreground" />
                         </Button>
-                        <Button variant="ghost" size="icon" className="h-8 w-8">
+                        <Button 
+                          variant="ghost" 
+                          size="icon" 
+                          className="h-8 w-8"
+                          onClick={() => toast.success(`Property ${property.caseNo} deleted`)}
+                        >
                           <Trash2 className="w-4 h-4 text-muted-foreground" />
                         </Button>
                       </div>

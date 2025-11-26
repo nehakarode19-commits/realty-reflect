@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Plus } from "lucide-react";
+import { toast } from "sonner";
 
 const comparisonProperties = [
   {
@@ -142,11 +143,17 @@ const ComparisonCalculation = () => {
         </Card>
 
         <div className="flex gap-4">
-          <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
+          <Button 
+            className="bg-primary text-primary-foreground hover:bg-primary/90"
+            onClick={() => toast.info("Add comparable form coming soon")}
+          >
             <Plus className="w-4 h-4 mr-2" />
             Add Comparable
           </Button>
-          <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
+          <Button 
+            className="bg-primary text-primary-foreground hover:bg-primary/90"
+            onClick={() => toast.success("ARV recalculated successfully")}
+          >
             Recalculate ARV
           </Button>
         </div>

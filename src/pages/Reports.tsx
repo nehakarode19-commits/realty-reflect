@@ -2,6 +2,7 @@ import Layout from "@/components/Layout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { FileText, Download, TrendingUp, DollarSign, Home, Calendar } from "lucide-react";
+import { toast } from "sonner";
 
 const reports = [
   {
@@ -63,11 +64,18 @@ const Reports = () => {
                 </CardHeader>
                 <CardContent>
                   <div className="flex gap-3">
-                    <Button className="flex-1 bg-gradient-to-r from-primary to-secondary">
+                    <Button 
+                      className="flex-1 bg-gradient-to-r from-primary to-secondary"
+                      onClick={() => toast.success(`Generating ${report.title}...`)}
+                    >
                       <FileText className="w-4 h-4 mr-2" />
                       Generate Report
                     </Button>
-                    <Button variant="outline" size="icon">
+                    <Button 
+                      variant="outline" 
+                      size="icon"
+                      onClick={() => toast.success(`Downloading ${report.title}...`)}
+                    >
                       <Download className="w-4 h-4" />
                     </Button>
                   </div>
@@ -102,7 +110,11 @@ const Reports = () => {
                       </p>
                     </div>
                   </div>
-                  <Button variant="ghost" size="icon">
+                  <Button 
+                    variant="ghost" 
+                    size="icon"
+                    onClick={() => toast.success(`Downloading ${file.name}...`)}
+                  >
                     <Download className="w-4 h-4" />
                   </Button>
                 </div>

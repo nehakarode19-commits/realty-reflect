@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Edit, Trash2 } from "lucide-react";
+import { toast } from "sonner";
 
 const comparisons = [
   {
@@ -61,11 +62,13 @@ const Comparisons = () => {
             <Button 
               variant="outline"
               className="bg-[#3d3d7a] text-white hover:bg-[#3d3d7a]/90 border-[#3d3d7a]"
+              onClick={() => toast.info("Upload functionality coming soon")}
             >
               Upload
             </Button>
             <Button 
               className="bg-[#3d3d7a] text-white hover:bg-[#3d3d7a]/90"
+              onClick={() => toast.info("Add comparison form coming soon")}
             >
               + Add Comparison
             </Button>
@@ -106,10 +109,18 @@ const Comparisons = () => {
                       <TableCell className="max-w-xs truncate">{comp.notes}</TableCell>
                       <TableCell>
                         <div className="flex items-center justify-end gap-2">
-                          <Button variant="ghost" size="icon">
+                          <Button 
+                            variant="ghost" 
+                            size="icon"
+                            onClick={() => toast.info(`Edit ${comp.propertyName}`)}
+                          >
                             <Edit className="w-4 h-4" />
                           </Button>
-                          <Button variant="ghost" size="icon">
+                          <Button 
+                            variant="ghost" 
+                            size="icon"
+                            onClick={() => toast.success(`${comp.propertyName} deleted`)}
+                          >
                             <Trash2 className="w-4 h-4 text-destructive" />
                           </Button>
                         </div>
@@ -120,10 +131,16 @@ const Comparisons = () => {
               </Table>
             </div>
             <div className="mt-6 flex justify-between items-center">
-              <Button className="bg-[#3d3d7a] text-white hover:bg-[#3d3d7a]/90">
+              <Button 
+                className="bg-[#3d3d7a] text-white hover:bg-[#3d3d7a]/90"
+                onClick={() => toast.success("Comparisons saved successfully")}
+              >
                 Save
               </Button>
-              <Button variant="outline">
+              <Button 
+                variant="outline"
+                onClick={() => window.history.back()}
+              >
                 Cancel
               </Button>
             </div>
