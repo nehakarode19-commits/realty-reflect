@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Edit, Trash2, SlidersHorizontal, ChevronDown } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 const rehabProperties = [
   {
@@ -72,7 +73,11 @@ const RehabEstimator = () => {
         </div>
 
         <div className="flex items-center gap-2">
-          <Button variant="outline" className="gap-2">
+          <Button 
+            variant="outline" 
+            className="gap-2"
+            onClick={() => toast.info("Filters clicked")}
+          >
             <SlidersHorizontal className="w-4 h-4" />
             Filters
             <ChevronDown className="w-4 h-4" />
@@ -105,10 +110,18 @@ const RehabEstimator = () => {
                       <TableCell>{property.notes}</TableCell>
                       <TableCell>
                         <div className="flex items-center justify-end gap-2">
-                          <Button variant="ghost" size="icon">
+                          <Button 
+                            variant="ghost" 
+                            size="icon"
+                            onClick={() => toast.info(`Edit ${property.mainPropertyName}`)}
+                          >
                             <Edit className="w-4 h-4" />
                           </Button>
-                          <Button variant="ghost" size="icon">
+                          <Button 
+                            variant="ghost" 
+                            size="icon"
+                            onClick={() => toast.success(`${property.mainPropertyName} deleted`)}
+                          >
                             <Trash2 className="w-4 h-4 text-destructive" />
                           </Button>
                         </div>
