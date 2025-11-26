@@ -1,7 +1,7 @@
 import Layout from "@/components/Layout";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { Edit, Trash2, Search } from "lucide-react";
+import { Edit, Trash2, Search, Download } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
@@ -102,9 +102,10 @@ const Properties = () => {
             <Button 
               variant="outline"
               className="bg-[#3d3d7a] text-white hover:bg-[#3d3d7a]/90 border-[#3d3d7a]"
-              onClick={() => toast.info("Upload functionality coming soon")}
+              onClick={() => toast.info("Export Excel functionality coming soon")}
             >
-              Upload
+              <Download className="w-4 h-4 mr-2" />
+              Export Excel
             </Button>
             <Button 
               className="bg-[#3d3d7a] text-white hover:bg-[#3d3d7a]/90"
