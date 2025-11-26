@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { Upload } from "lucide-react";
 import { toast } from "sonner";
 
 const CreateProperty = () => {
@@ -15,9 +16,18 @@ const CreateProperty = () => {
   return (
     <Layout>
       <div className="space-y-6 max-w-5xl">
-        <div>
-          <h1 className="text-3xl font-bold text-foreground">Create Property</h1>
-          <p className="text-muted-foreground mt-1">Add a new property to your investment portfolio</p>
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold text-foreground">Property Information</h1>
+          </div>
+          <Button 
+            type="button"
+            className="bg-[#3d3d7a] text-white hover:bg-[#3d3d7a]/90"
+            onClick={() => toast.info("Upload file to auto-fill property data")}
+          >
+            <Upload className="w-4 h-4 mr-2" />
+            Upload for Auto-Fill
+          </Button>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -29,19 +39,27 @@ const CreateProperty = () => {
             <CardContent className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="caseNo">Case No</Label>
+                  <Label htmlFor="caseNo">Case No:</Label>
                   <Input id="caseNo" placeholder="e.g., 1255" required />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="parcelId">Parcel ID (APN etc)</Label>
+                  <Label htmlFor="parcelId">Parcel ID (APN etc):</Label>
                   <Input id="parcelId" placeholder="e.g., 100002444400" required />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="lienAmount">Lien Amount</Label>
+                  <Label htmlFor="date">Date:</Label>
+                  <Input id="date" type="date" required />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="endDate">End Date (For Bid):</Label>
+                  <Input id="endDate" type="date" required />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="lienAmount">Lien Amount:</Label>
                   <Input id="lienAmount" type="number" placeholder="e.g., 20000" required />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="startingBid">Starting Bid</Label>
+                  <Label htmlFor="startingBid">Starting Bid:</Label>
                   <Input id="startingBid" type="number" placeholder="e.g., 25000" required />
                 </div>
               </div>
@@ -56,19 +74,35 @@ const CreateProperty = () => {
             <CardContent className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="owners">Owners</Label>
+                  <Label htmlFor="propertyName">Property name:</Label>
+                  <Input id="propertyName" placeholder="Property name" required />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="owners">Owners:</Label>
                   <Input id="owners" placeholder="Owner name" required />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="bedBath">Bed/Bath</Label>
-                  <Input id="bedBath" placeholder="e.g., 3/2" required />
+                  <Label htmlFor="perSqftPrice">Per Sqft Price:</Label>
+                  <Input id="perSqftPrice" type="number" placeholder="e.g., 150" required />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="sqFootage">Sq. Footage</Label>
+                  <Label htmlFor="yearBuilt">Year built:</Label>
+                  <Input id="yearBuilt" type="number" placeholder="e.g., 2005" required />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="bed">Bed:</Label>
+                  <Input id="bed" type="number" placeholder="e.g., 3" required />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="bath">Bath:</Label>
+                  <Input id="bath" type="number" placeholder="e.g., 2" required />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="sqFootage">Sq. Footage:</Label>
                   <Input id="sqFootage" type="number" placeholder="e.g., 1500" required />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="address">Address</Label>
+                  <Label htmlFor="address">Address:</Label>
                   <Input id="address" placeholder="Full address" required />
                 </div>
               </div>
