@@ -19,7 +19,6 @@ const Layout = ({ children }: LayoutProps) => {
     { to: "/dashboard", icon: LayoutDashboard, label: "Dashboard" },
     { to: "/properties", icon: Home, label: "Property Master" },
     { to: "/comparisons", icon: BarChart3, label: "Comparison Property Master" },
-    { to: "/comparison-calculation", icon: Calculator, label: "Comparison Calculation" },
     { to: "/rehab-estimator", icon: Calculator, label: "Rehab Estimator" },
     { to: "/max-bid", icon: DollarSign, label: "Max Bid Calculation" },
     { to: "/reports", icon: FileText, label: "Reports" },
