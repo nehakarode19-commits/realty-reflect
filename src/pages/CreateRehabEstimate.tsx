@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Layout from "@/components/Layout";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -34,38 +34,43 @@ const CreateRehabEstimate = () => {
 
   return (
     <Layout>
-      <div className="space-y-6">
+      <div className="space-y-6 max-w-5xl">
         <div>
           <h1 className="text-3xl font-bold text-foreground">Calculate Rehab Estimate</h1>
         </div>
 
         <Card className="shadow-lg">
-          <CardContent className="p-8">
-            <div className="space-y-6 max-w-4xl">
-              <div className="grid grid-cols-2 gap-x-8 gap-y-4">
-                <div className="font-semibold text-muted-foreground">Field</div>
-                <div className="font-semibold text-muted-foreground">Value</div>
-
-                <div className="text-sm font-medium">Property Name</div>
+          <CardHeader>
+            <CardTitle>Rehab Estimation Details</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="propertyName">Property Name:</Label>
                 <Input
+                  id="propertyName"
                   value={formData.propertyName}
                   onChange={(e) => handleInputChange("propertyName", e.target.value)}
-                  className="h-9"
+                  placeholder="Property name"
                 />
-
-                <div className="text-sm font-medium">Sq Footage</div>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="sqFootage">Sq Footage:</Label>
                 <Input
+                  id="sqFootage"
+                  type="number"
                   value={formData.sqFootage}
                   onChange={(e) => handleInputChange("sqFootage", e.target.value)}
-                  className="h-9"
+                  placeholder="e.g., 1500"
                 />
-
-                <div className="text-sm font-medium">Rehab type</div>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="rehabType">Rehab Type:</Label>
                 <Select
                   value={formData.rehabType}
                   onValueChange={(value) => handleInputChange("rehabType", value)}
                 >
-                  <SelectTrigger className="h-9">
+                  <SelectTrigger id="rehabType">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -75,39 +80,44 @@ const CreateRehabEstimate = () => {
                     <SelectItem value="OCCUPIED LIGHT">OCCUPIED LIGHT</SelectItem>
                   </SelectContent>
                 </Select>
-
-                <div className="text-sm font-medium">Rehab value</div>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="rehabValue">Rehab Value:</Label>
                 <Input
+                  id="rehabValue"
                   value={formData.rehabValue}
                   onChange={(e) => handleInputChange("rehabValue", e.target.value)}
-                  className="h-9"
+                  placeholder="e.g., $65"
                 />
-
-                <div className="text-sm font-medium">Rehab Estimate</div>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="rehabEstimate">Rehab Estimate:</Label>
                 <Input
+                  id="rehabEstimate"
+                  type="number"
                   value={formData.rehabEstimate}
                   onChange={(e) => handleInputChange("rehabEstimate", e.target.value)}
-                  className="h-9"
+                  placeholder="e.g., 2080"
                 />
               </div>
             </div>
-
-            <div className="flex items-center gap-3 mt-8">
-              <Button 
-                onClick={handleSave}
-                className="bg-[#4A90E2] text-white hover:bg-[#4A90E2]/90"
-              >
-                Save
-              </Button>
-              <Button 
-                variant="outline"
-                onClick={handleCancel}
-              >
-                Cancel
-              </Button>
-            </div>
           </CardContent>
         </Card>
+
+        <div className="flex gap-4">
+          <Button 
+            onClick={handleSave}
+            className="bg-gradient-to-r from-primary to-secondary"
+          >
+            Save
+          </Button>
+          <Button 
+            variant="outline"
+            onClick={handleCancel}
+          >
+            Cancel
+          </Button>
+        </div>
       </div>
     </Layout>
   );

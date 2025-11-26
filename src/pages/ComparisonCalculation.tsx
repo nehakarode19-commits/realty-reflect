@@ -1,5 +1,5 @@
 import Layout from "@/components/Layout";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -71,87 +71,89 @@ const ComparisonCalculation = () => {
 
   return (
     <Layout>
-      <div className="space-y-6">
+      <div className="space-y-6 max-w-5xl">
         <div>
           <h1 className="text-3xl font-bold text-foreground">Property Information</h1>
         </div>
 
+        {/* Property Details */}
         <Card className="shadow-lg">
-          <CardContent className="p-6">
-            <div className="space-y-6">
-              {/* Property Details Section */}
-              <div>
-                <h3 className="text-sm font-semibold text-foreground mb-4">Property Details</h3>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="propertyName">Property name</Label>
-                    <Input id="propertyName" placeholder="Enter property name" />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="perSqftPrice">Per Sqft Price</Label>
-                    <Input id="perSqftPrice" placeholder="Enter price per sqft" />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="yearBuilt">Year built</Label>
-                    <Input id="yearBuilt" placeholder="Enter year" />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="bed">Bed</Label>
-                    <Input id="bed" placeholder="Enter beds" />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="bath">Bath</Label>
-                    <Input id="bath" placeholder="Enter baths" />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="sqFootage">Sq. Footage</Label>
-                    <Input id="sqFootage" placeholder="Enter square footage" />
-                  </div>
+          <CardHeader>
+            <CardTitle>Property Details</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="propertyName">Property name:</Label>
+                <Input id="propertyName" placeholder="Property name" />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="perSqftPrice">Per Sqft Price:</Label>
+                <Input id="perSqftPrice" type="number" placeholder="e.g., 150" />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="yearBuilt">Year built:</Label>
+                <Input id="yearBuilt" type="number" placeholder="e.g., 2005" />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="bed">Bed:</Label>
+                <Input id="bed" type="number" placeholder="e.g., 3" />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="bath">Bath:</Label>
+                <Input id="bath" type="number" placeholder="e.g., 2" />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="sqFootage">Sq. Footage:</Label>
+                <Input id="sqFootage" type="number" placeholder="e.g., 1500" />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Financial Details */}
+        <Card className="shadow-lg">
+          <CardHeader>
+            <CardTitle>Financial Details</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="roughARV">Rough ARV</Label>
+                <div className="flex gap-2">
+                  <Input id="roughARV" type="number" placeholder="Rough ARV" />
+                  <Button 
+                    variant="outline" 
+                    className="bg-gradient-to-r from-primary to-secondary"
+                    onClick={() => toast.info("Calculate ARV")}
+                  >
+                    Calculate
+                  </Button>
                 </div>
               </div>
-
-              {/* Financial Details Section */}
-              <div>
-                <h3 className="text-sm font-semibold text-foreground mb-4">Financial Details</h3>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="roughARV">Rough ARV</Label>
-                    <div className="flex gap-2">
-                      <Input id="roughARV" placeholder="Enter rough ARV" />
-                      <Button 
-                        variant="outline" 
-                        className="bg-[#3d3d7a] text-white hover:bg-[#3d3d7a]/90 border-[#3d3d7a]"
-                        onClick={() => toast.info("Calculate ARV")}
-                      >
-                        Calculate
-                      </Button>
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="finalARV">Final ARV</Label>
-                    <Input id="finalARV" placeholder="Calculated automatically" disabled />
-                  </div>
-                  <div className="space-y-2 col-span-2">
-                    <Label htmlFor="notes">Notes</Label>
-                    <Textarea id="notes" placeholder="Enter notes" className="min-h-[100px]" />
-                  </div>
-                </div>
+              <div className="space-y-2">
+                <Label htmlFor="finalARV">Final ARV</Label>
+                <Input id="finalARV" type="number" placeholder="Calculated automatically" disabled />
               </div>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="notes">Notes</Label>
+              <Textarea id="notes" placeholder="Additional notes or comments..." rows={4} />
+            </div>
 
-              {/* Calculated Values */}
-              <div className="grid grid-cols-3 gap-6 pt-4 border-t">
-                <div>
-                  <p className="text-sm text-muted-foreground mb-1">Price per Sq ft:</p>
-                  <p className="text-lg font-bold text-foreground">7795.05</p>
-                </div>
-                <div>
-                  <p className="text-sm text-muted-foreground mb-1">AVG PPSF:</p>
-                  <p className="text-lg font-bold text-foreground">446361.33</p>
-                </div>
-                <div>
-                  <p className="text-sm text-muted-foreground mb-1">ARV:</p>
-                  <p className="text-lg font-bold text-foreground">1428826.67</p>
-                </div>
+            {/* Calculated Values */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 border-t">
+              <div>
+                <p className="text-sm text-muted-foreground mb-1">Price per Sq ft:</p>
+                <p className="text-lg font-bold text-foreground">7795.05</p>
+              </div>
+              <div>
+                <p className="text-sm text-muted-foreground mb-1">AVG PPSF:</p>
+                <p className="text-lg font-bold text-foreground">446361.33</p>
+              </div>
+              <div>
+                <p className="text-sm text-muted-foreground mb-1">ARV:</p>
+                <p className="text-lg font-bold text-foreground">1428826.67</p>
               </div>
             </div>
           </CardContent>
@@ -159,10 +161,10 @@ const ComparisonCalculation = () => {
 
         {/* Comparison Properties Table */}
         <Card className="shadow-lg">
-          <CardContent className="p-6">
-            <div className="mb-4">
-              <h2 className="text-lg font-semibold">Comparison Properties (3)</h2>
-            </div>
+          <CardHeader>
+            <CardTitle>Comparison Properties (3)</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
             <div className="overflow-x-auto">
               <Table>
                 <TableHeader>
@@ -221,7 +223,7 @@ const ComparisonCalculation = () => {
 
         <div className="flex gap-4">
           <Button 
-            className="bg-[#3d3d7a] text-white hover:bg-[#3d3d7a]/90"
+            className="bg-gradient-to-r from-primary to-secondary"
             onClick={() => toast.info("Add comparison property")}
           >
             <Plus className="w-4 h-4 mr-2" />
@@ -324,7 +326,7 @@ const ComparisonCalculation = () => {
                 Cancel
               </Button>
               <Button 
-                className="bg-[#3d3d7a] text-white hover:bg-[#3d3d7a]/90"
+                className="bg-gradient-to-r from-primary to-secondary"
                 onClick={handleUpdate}
               >
                 Update
