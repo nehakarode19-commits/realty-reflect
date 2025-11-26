@@ -4,21 +4,19 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useNavigate } from "react-router-dom";
-import { useToast } from "@/hooks/use-toast";
+import { toast } from "sonner";
 
 const CreateRehabEstimate = () => {
   const navigate = useNavigate();
-  const { toast } = useToast();
   
   const [formData, setFormData] = useState({
-    propertyName: "",
-    sqft: "",
-    rehabType: "",
-    address: "",
-    fromDate: "",
-    rehabRange: "",
-    roughRehabEstimate: "",
+    propertyName: "sunset villa",
+    sqFootage: "32",
+    rehabType: "VACANT ROUGH",
+    rehabValue: "$65",
+    rehabEstimate: "2080",
   });
 
   const handleInputChange = (field: string, value: string) => {
@@ -26,10 +24,11 @@ const CreateRehabEstimate = () => {
   };
 
   const handleSave = () => {
-    toast({
-      title: "Success",
-      description: "Rehab estimate saved successfully",
-    });
+    toast.success("Rehab estimate saved successfully");
+    navigate("/rehab-estimator");
+  };
+
+  const handleCancel = () => {
     navigate("/rehab-estimator");
   };
 
@@ -37,86 +36,74 @@ const CreateRehabEstimate = () => {
     <Layout>
       <div className="space-y-6">
         <div>
-          <h1 className="text-3xl font-bold text-foreground">Create Rehab Estimator</h1>
+          <h1 className="text-3xl font-bold text-foreground">Calculate Rehab Estimate</h1>
         </div>
 
         <Card className="shadow-lg">
-          <CardContent className="p-6">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="space-y-2">
-                <Label htmlFor="propertyName">Property Name</Label>
+          <CardContent className="p-8">
+            <div className="space-y-6 max-w-4xl">
+              <div className="grid grid-cols-2 gap-x-8 gap-y-4">
+                <div className="font-semibold text-muted-foreground">Field</div>
+                <div className="font-semibold text-muted-foreground">Value</div>
+
+                <div className="text-sm font-medium">Property Name</div>
                 <Input
-                  id="propertyName"
-                  placeholder="Property Name"
                   value={formData.propertyName}
                   onChange={(e) => handleInputChange("propertyName", e.target.value)}
+                  className="h-9"
                 />
-              </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="sqft">SQ FT</Label>
+                <div className="text-sm font-medium">Sq Footage</div>
                 <Input
-                  id="sqft"
-                  placeholder="SQ FT"
-                  value={formData.sqft}
-                  onChange={(e) => handleInputChange("sqft", e.target.value)}
+                  value={formData.sqFootage}
+                  onChange={(e) => handleInputChange("sqFootage", e.target.value)}
+                  className="h-9"
                 />
-              </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="rehabType">Rehab Type</Label>
-                <Input
-                  id="rehabType"
-                  placeholder="Rehab Type"
+                <div className="text-sm font-medium">Rehab type</div>
+                <Select
                   value={formData.rehabType}
-                  onChange={(e) => handleInputChange("rehabType", e.target.value)}
-                />
-              </div>
+                  onValueChange={(value) => handleInputChange("rehabType", value)}
+                >
+                  <SelectTrigger className="h-9">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="VACANT ROUGH">VACANT ROUGH</SelectItem>
+                    <SelectItem value="VACANT LIGHT">VACANT LIGHT</SelectItem>
+                    <SelectItem value="OCCUPIED ROUGH">OCCUPIED ROUGH</SelectItem>
+                    <SelectItem value="OCCUPIED LIGHT">OCCUPIED LIGHT</SelectItem>
+                  </SelectContent>
+                </Select>
 
-              <div className="space-y-2 md:col-span-3">
-                <Label htmlFor="address">Address</Label>
+                <div className="text-sm font-medium">Rehab value</div>
                 <Input
-                  id="address"
-                  placeholder="From Date"
-                  value={formData.address}
-                  onChange={(e) => handleInputChange("address", e.target.value)}
+                  value={formData.rehabValue}
+                  onChange={(e) => handleInputChange("rehabValue", e.target.value)}
+                  className="h-9"
                 />
-              </div>
 
-              <div className="space-y-2 md:col-span-3">
-                <Label htmlFor="fromDate">From Date</Label>
+                <div className="text-sm font-medium">Rehab Estimate</div>
                 <Input
-                  id="fromDate"
-                  type="date"
-                  value={formData.fromDate}
-                  onChange={(e) => handleInputChange("fromDate", e.target.value)}
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="rehabRange">Rehab Range</Label>
-                <Input
-                  id="rehabRange"
-                  placeholder="Rehab Range"
-                  value={formData.rehabRange}
-                  onChange={(e) => handleInputChange("rehabRange", e.target.value)}
-                />
-              </div>
-
-              <div className="space-y-2 md:col-span-2">
-                <Label htmlFor="roughRehabEstimate">Rough Rehab Estimate</Label>
-                <Input
-                  id="roughRehabEstimate"
-                  placeholder="Rough Rehab Estimate"
-                  value={formData.roughRehabEstimate}
-                  onChange={(e) => handleInputChange("roughRehabEstimate", e.target.value)}
+                  value={formData.rehabEstimate}
+                  onChange={(e) => handleInputChange("rehabEstimate", e.target.value)}
+                  className="h-9"
                 />
               </div>
             </div>
 
-            <div className="flex justify-end mt-6">
-              <Button onClick={handleSave} className="bg-primary text-primary-foreground hover:bg-primary/90">
+            <div className="flex items-center gap-3 mt-8">
+              <Button 
+                onClick={handleSave}
+                className="bg-[#4A90E2] text-white hover:bg-[#4A90E2]/90"
+              >
                 Save
+              </Button>
+              <Button 
+                variant="outline"
+                onClick={handleCancel}
+              >
+                Cancel
               </Button>
             </div>
           </CardContent>

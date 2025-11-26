@@ -181,7 +181,7 @@ const RehabEstimator = () => {
                           <Button 
                             variant="ghost" 
                             size="icon"
-                            onClick={() => toast.info(`Edit ${property.propertyName}`)}
+                            onClick={() => navigate("/create-rehab-estimate")}
                           >
                             <Edit className="w-4 h-4" />
                           </Button>
