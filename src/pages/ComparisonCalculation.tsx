@@ -54,6 +54,7 @@ const comparisonProperties = [
 
 const ComparisonCalculation = () => {
   const [editDialogOpen, setEditDialogOpen] = useState(false);
+  const [addDialogOpen, setAddDialogOpen] = useState(false);
   const [editingProperty, setEditingProperty] = useState<any>(null);
   
   // Form state
@@ -303,7 +304,7 @@ const ComparisonCalculation = () => {
         <div className="flex gap-4">
           <Button 
             className="bg-gradient-to-r from-primary to-secondary"
-            onClick={() => toast.info("Add comparison property")}
+            onClick={() => setAddDialogOpen(true)}
           >
             <Plus className="w-4 h-4 mr-2" />
             Compare Property +
@@ -315,6 +316,79 @@ const ComparisonCalculation = () => {
             Cancel
           </Button>
         </div>
+
+        {/* Add Comparison Property Dialog */}
+        <Dialog open={addDialogOpen} onOpenChange={setAddDialogOpen}>
+          <DialogContent className="max-w-3xl">
+            <DialogHeader>
+              <DialogTitle>Add Comparison Property</DialogTitle>
+            </DialogHeader>
+            <div className="space-y-4 py-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="add-propertyName">Property name:</Label>
+                  <Input id="add-propertyName" />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="add-yearBuilt">Year built:</Label>
+                  <Input id="add-yearBuilt" type="number" />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="add-perSqftPrice">Per Sqft Price:</Label>
+                  <Input id="add-perSqftPrice" type="number" />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="add-yearSold">Year sold:</Label>
+                  <Input id="add-yearSold" type="number" />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="add-bed">Bed:</Label>
+                  <Input id="add-bed" type="number" />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="add-bath">Bath:</Label>
+                  <Input id="add-bath" type="number" />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="add-sqFootage">Sq. Footage:</Label>
+                  <Input id="add-sqFootage" type="number" />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="add-farFromProperty">Far from main property:</Label>
+                  <Input id="add-farFromProperty" />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="add-salesPrice">Sales price:</Label>
+                  <Input id="add-salesPrice" type="number" />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="add-notes">Notes:</Label>
+                  <Textarea 
+                    id="add-notes" 
+                    className="min-h-[80px]"
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="flex justify-end gap-3">
+              <Button 
+                variant="outline"
+                onClick={() => setAddDialogOpen(false)}
+              >
+                Cancel
+              </Button>
+              <Button 
+                className="bg-gradient-to-r from-primary to-secondary"
+                onClick={() => {
+                  toast.success("Comparison property added");
+                  setAddDialogOpen(false);
+                }}
+              >
+                Save
+              </Button>
+            </div>
+          </DialogContent>
+        </Dialog>
 
         {/* Edit Dialog */}
         <Dialog open={editDialogOpen} onOpenChange={setEditDialogOpen}>
