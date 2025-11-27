@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Properties from "./pages/Properties";
 import CreateProperty from "./pages/CreateProperty";
+import ImportPropertyData from "./pages/ImportPropertyData";
 import Comparisons from "./pages/Comparisons";
 import ComparisonCalculation from "./pages/ComparisonCalculation";
 import RehabEstimator from "./pages/RehabEstimator";
@@ -30,6 +31,7 @@ const App = () => (
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/properties" element={<Properties />} />
           <Route path="/create-property" element={<CreateProperty />} />
+          <Route path="/import-property-data" element={<ImportPropertyData />} />
           <Route path="/comparisons" element={<Comparisons />} />
           <Route path="/comparison-calculation" element={<ComparisonCalculation />} />
           <Route path="/rehab-estimator" element={<RehabEstimator />} />
