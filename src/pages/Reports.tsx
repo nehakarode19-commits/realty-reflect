@@ -246,36 +246,36 @@ const Reports = () => {
               </div>
               <CardContent className="p-6 space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-500/10 to-blue-600/10 p-6 border-2 border-blue-200/50 hover:border-blue-400/50 transition-all hover:shadow-lg">
-                    <div className="absolute top-0 right-0 w-20 h-20 bg-blue-500/10 rounded-full -mr-10 -mt-10" />
+                  <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 p-6 border border-slate-200 hover:border-slate-300 transition-all hover:shadow-md">
+                    <div className="absolute top-0 right-0 w-20 h-20 bg-slate-200/30 rounded-full -mr-10 -mt-10" />
                     <div className="relative">
                       <p className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">Total Imports</p>
-                      <p className="text-4xl font-bold text-blue-600 mt-2">{importSummaryData.totalImports}</p>
-                      <div className="mt-2 flex items-center gap-1 text-xs text-blue-600">
+                      <p className="text-4xl font-bold text-[#3d3d7a] mt-2">{importSummaryData.totalImports}</p>
+                      <div className="mt-2 flex items-center gap-1 text-xs text-[#3d3d7a]">
                         <TrendingUp className="w-3 h-3" />
                         <span>Active</span>
                       </div>
                     </div>
                   </div>
-                  <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-purple-500/10 to-purple-600/10 p-6 border-2 border-purple-200/50 hover:border-purple-400/50 transition-all hover:shadow-lg">
-                    <div className="absolute top-0 right-0 w-20 h-20 bg-purple-500/10 rounded-full -mr-10 -mt-10" />
+                  <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 p-6 border border-slate-200 hover:border-slate-300 transition-all hover:shadow-md">
+                    <div className="absolute top-0 right-0 w-20 h-20 bg-slate-200/30 rounded-full -mr-10 -mt-10" />
                     <div className="relative">
                       <p className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">Total Rows</p>
-                      <p className="text-4xl font-bold text-purple-600 mt-2">{importSummaryData.totalRows}</p>
-                      <div className="mt-2 flex items-center gap-1 text-xs text-purple-600">
+                      <p className="text-4xl font-bold text-[#4a4a92] mt-2">{importSummaryData.totalRows}</p>
+                      <div className="mt-2 flex items-center gap-1 text-xs text-[#4a4a92]">
                         <FileSpreadsheet className="w-3 h-3" />
                         <span>Processed</span>
                       </div>
                     </div>
                   </div>
-                  <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-green-500/10 to-green-600/10 p-6 border-2 border-green-200/50 hover:border-green-400/50 transition-all hover:shadow-lg">
-                    <div className="absolute top-0 right-0 w-20 h-20 bg-green-500/10 rounded-full -mr-10 -mt-10" />
+                  <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 p-6 border border-slate-200 hover:border-slate-300 transition-all hover:shadow-md">
+                    <div className="absolute top-0 right-0 w-20 h-20 bg-slate-200/30 rounded-full -mr-10 -mt-10" />
                     <div className="relative">
                       <p className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">Success Rate</p>
-                      <p className="text-4xl font-bold text-green-600 mt-2">
+                      <p className="text-4xl font-bold text-slate-700 mt-2">
                         {Math.round((importSummaryData.successfulRows / importSummaryData.totalRows) * 100)}%
                       </p>
-                      <div className="mt-2 flex items-center gap-1 text-xs text-green-600">
+                      <div className="mt-2 flex items-center gap-1 text-xs text-slate-700">
                         <CheckCircle2 className="w-3 h-3" />
                         <span>Excellent</span>
                       </div>
@@ -284,33 +284,33 @@ const Reports = () => {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="rounded-2xl bg-gradient-to-br from-emerald-50 to-green-50 p-6 border-2 border-emerald-200 shadow-lg">
+                  <div className="rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 p-6 border border-slate-200 shadow-md">
                     <div className="flex items-start justify-between">
                       <div>
-                        <p className="text-sm font-semibold text-emerald-700 uppercase tracking-wide">Successful Rows</p>
-                        <p className="text-3xl font-bold text-emerald-600 mt-2">{importSummaryData.successfulRows}</p>
-                        <p className="text-xs text-emerald-600 mt-1">of {importSummaryData.totalRows} total</p>
+                        <p className="text-sm font-semibold text-slate-600 uppercase tracking-wide">Successful Rows</p>
+                        <p className="text-3xl font-bold text-slate-800 mt-2">{importSummaryData.successfulRows}</p>
+                        <p className="text-xs text-slate-600 mt-1">of {importSummaryData.totalRows} total</p>
                       </div>
-                      <div className="bg-emerald-500/20 p-3 rounded-xl">
-                        <CheckCircle2 className="w-8 h-8 text-emerald-600" />
+                      <div className="bg-slate-200/50 p-3 rounded-xl">
+                        <CheckCircle2 className="w-8 h-8 text-slate-700" />
                       </div>
                     </div>
                   </div>
-                  <div className="rounded-2xl bg-gradient-to-br from-red-50 to-orange-50 p-6 border-2 border-red-200 shadow-lg">
+                  <div className="rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 p-6 border border-slate-200 shadow-md">
                     <div className="flex items-start justify-between">
                       <div>
-                        <p className="text-sm font-semibold text-red-700 uppercase tracking-wide">Error Rows</p>
-                        <p className="text-3xl font-bold text-red-600 mt-2">{importSummaryData.errorRows}</p>
-                        <p className="text-xs text-red-600 mt-1">requires attention</p>
+                        <p className="text-sm font-semibold text-slate-600 uppercase tracking-wide">Error Rows</p>
+                        <p className="text-3xl font-bold text-slate-800 mt-2">{importSummaryData.errorRows}</p>
+                        <p className="text-xs text-slate-600 mt-1">requires attention</p>
                       </div>
-                      <div className="bg-red-500/20 p-3 rounded-xl">
-                        <AlertCircle className="w-8 h-8 text-red-600" />
+                      <div className="bg-slate-200/50 p-3 rounded-xl">
+                        <AlertCircle className="w-8 h-8 text-slate-700" />
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <div className="rounded-2xl bg-gradient-to-br from-slate-50 to-gray-50 p-6 border-2 border-slate-200">
+                <div className="rounded-xl bg-muted/30 p-6 border border-border">
                   <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
                     <Calendar className="w-4 h-4 text-[#3d3d7a]" />
                     Import Details
@@ -332,10 +332,10 @@ const Reports = () => {
                     <FileText className="w-5 h-5 text-[#3d3d7a]" />
                     Import History
                   </h3>
-                  <div className="rounded-2xl border-2 border-slate-200 overflow-hidden bg-white shadow-lg">
+                  <div className="rounded-xl border border-border overflow-hidden bg-card shadow-md">
                     <Table>
                       <TableHeader>
-                        <TableRow className="bg-gradient-to-r from-slate-50 to-gray-50 hover:from-slate-100 hover:to-gray-100">
+                        <TableRow className="bg-muted/50">
                           <TableHead className="font-bold">Date</TableHead>
                           <TableHead className="font-bold">File Name</TableHead>
                           <TableHead className="font-bold">Total Rows</TableHead>
@@ -346,26 +346,26 @@ const Reports = () => {
                       </TableHeader>
                       <TableBody>
                         {importDetails.map((item, index) => (
-                          <TableRow key={index} className="hover:bg-slate-50/50 transition-colors">
+                          <TableRow key={index} className="hover:bg-muted/30 transition-colors">
                             <TableCell className="font-medium">{item.date}</TableCell>
                             <TableCell className="font-semibold text-[#3d3d7a]">{item.fileName}</TableCell>
                             <TableCell>
                               <Badge variant="outline" className="font-semibold">{item.rows}</Badge>
                             </TableCell>
                             <TableCell>
-                              <span className="inline-flex items-center gap-1 text-emerald-600 font-semibold">
+                              <span className="inline-flex items-center gap-1 text-slate-700 font-semibold">
                                 <CheckCircle2 className="w-4 h-4" />
                                 {item.success}
                               </span>
                             </TableCell>
                             <TableCell>
-                              <span className="inline-flex items-center gap-1 text-red-600 font-semibold">
+                              <span className="inline-flex items-center gap-1 text-slate-600 font-semibold">
                                 <AlertCircle className="w-4 h-4" />
                                 {item.errors}
                               </span>
                             </TableCell>
                             <TableCell>
-                              <Badge className={item.errors > 0 ? "bg-amber-500 hover:bg-amber-600" : "bg-emerald-500 hover:bg-emerald-600"}>
+                              <Badge className={item.errors > 0 ? "bg-slate-500 hover:bg-slate-600" : "bg-slate-700 hover:bg-slate-800"}>
                                 {item.status}
                               </Badge>
                             </TableCell>
@@ -426,28 +426,21 @@ const Reports = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                   {monthlyKPIs.map((kpi, index) => {
                     const Icon = kpi.icon;
-                    const gradients = [
-                      'from-blue-500/20 to-blue-600/20 border-blue-300',
-                      'from-emerald-500/20 to-emerald-600/20 border-emerald-300',
-                      'from-purple-500/20 to-purple-600/20 border-purple-300',
-                      'from-amber-500/20 to-amber-600/20 border-amber-300'
-                    ];
-                    const iconColors = ['text-blue-600', 'text-emerald-600', 'text-purple-600', 'text-amber-600'];
                     return (
                       <div 
                         key={index}
-                        className={`relative overflow-hidden rounded-2xl bg-gradient-to-br ${gradients[index]} p-6 border-2 hover:shadow-xl transition-all group`}
+                        className="relative overflow-hidden rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 p-6 border border-slate-200 hover:shadow-md transition-all group"
                       >
-                        <div className="absolute top-0 right-0 w-20 h-20 bg-white/30 rounded-full -mr-10 -mt-10 group-hover:scale-150 transition-transform" />
+                        <div className="absolute top-0 right-0 w-20 h-20 bg-slate-200/30 rounded-full -mr-10 -mt-10 group-hover:scale-150 transition-transform" />
                         <div className="relative">
                           <div className="flex items-start justify-between mb-3">
-                            <Icon className={`w-8 h-8 ${iconColors[index]}`} />
-                            <Badge variant="outline" className="text-xs font-bold bg-white/50 border-none">
+                            <Icon className="w-8 h-8 text-[#3d3d7a]" />
+                            <Badge variant="outline" className="text-xs font-bold bg-white border-slate-300">
                               {kpi.change}
                             </Badge>
                           </div>
                           <p className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">{kpi.label}</p>
-                          <p className="text-3xl font-bold mt-2">{kpi.value}</p>
+                          <p className="text-3xl font-bold mt-2 text-foreground">{kpi.value}</p>
                         </div>
                       </div>
                     );
@@ -455,8 +448,8 @@ const Reports = () => {
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                  <div className="rounded-2xl border-2 border-slate-200 overflow-hidden bg-white shadow-lg">
-                    <div className="bg-gradient-to-r from-slate-50 to-gray-50 px-6 py-4 border-b-2">
+                  <div className="rounded-xl border border-border overflow-hidden bg-card shadow-md">
+                    <div className="bg-muted/30 px-6 py-4 border-b">
                       <h3 className="text-lg font-bold flex items-center gap-2">
                         <TrendingUp className="w-5 h-5 text-[#3d3d7a]" />
                         Monthly Property Growth
@@ -465,26 +458,26 @@ const Reports = () => {
                     <div className="p-6">
                       <ResponsiveContainer width="100%" height={300}>
                         <BarChart data={monthlyChartData}>
-                          <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-                          <XAxis dataKey="month" stroke="#64748b" style={{ fontSize: '12px', fontWeight: 600 }} />
-                          <YAxis stroke="#64748b" style={{ fontSize: '12px', fontWeight: 600 }} />
+                          <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                          <XAxis dataKey="month" stroke="hsl(var(--muted-foreground))" style={{ fontSize: '12px', fontWeight: 600 }} />
+                          <YAxis stroke="hsl(var(--muted-foreground))" style={{ fontSize: '12px', fontWeight: 600 }} />
                           <Tooltip 
                             contentStyle={{ 
-                              backgroundColor: 'white', 
-                              border: '2px solid #3d3d7a', 
-                              borderRadius: '12px',
-                              boxShadow: '0 10px 25px rgba(0,0,0,0.1)'
+                              backgroundColor: 'hsl(var(--card))', 
+                              border: '1px solid hsl(var(--border))', 
+                              borderRadius: '8px',
+                              boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
                             }}
                           />
                           <Legend wrapperStyle={{ fontSize: '14px', fontWeight: 600 }} />
-                          <Bar dataKey="properties" fill="#3d3d7a" name="Properties" radius={[8, 8, 0, 0]} />
+                          <Bar dataKey="properties" fill="#3d3d7a" name="Properties" radius={[6, 6, 0, 0]} />
                         </BarChart>
                       </ResponsiveContainer>
                     </div>
                   </div>
 
-                  <div className="rounded-2xl border-2 border-slate-200 overflow-hidden bg-white shadow-lg">
-                    <div className="bg-gradient-to-r from-slate-50 to-gray-50 px-6 py-4 border-b-2">
+                  <div className="rounded-xl border border-border overflow-hidden bg-card shadow-md">
+                    <div className="bg-muted/30 px-6 py-4 border-b">
                       <h3 className="text-lg font-bold flex items-center gap-2">
                         <Home className="w-5 h-5 text-[#3d3d7a]" />
                         Property Status Distribution
@@ -502,8 +495,8 @@ const Reports = () => {
                             outerRadius={90}
                             fill="#8884d8"
                             dataKey="value"
-                            strokeWidth={3}
-                            stroke="#fff"
+                            strokeWidth={2}
+                            stroke="hsl(var(--card))"
                           >
                             {statusPieData.map((entry, index) => (
                               <Cell key={`cell-${index}`} fill={entry.color} />
@@ -516,7 +509,7 @@ const Reports = () => {
                         {statusPieData.map((item, index) => (
                           <div key={index} className="flex items-center gap-2">
                             <div 
-                              className="w-4 h-4 rounded-full shadow-md" 
+                              className="w-3 h-3 rounded-full" 
                               style={{ backgroundColor: item.color }} 
                             />
                             <span className="text-sm font-semibold">{item.name}: {item.value}</span>
@@ -564,11 +557,11 @@ const Reports = () => {
                 </div>
               </div>
               <CardContent className="p-6 space-y-8">
-                <div className="rounded-2xl border-2 border-slate-200 overflow-hidden bg-white shadow-lg">
+                <div className="rounded-xl border border-border overflow-hidden bg-card shadow-md">
                   <div className="overflow-x-auto">
                     <Table>
                       <TableHeader>
-                        <TableRow className="bg-gradient-to-r from-[#3d3d7a] to-[#4a4a92] hover:from-[#4a4a92] hover:to-[#5656aa]">
+                        <TableRow className="bg-[#3d3d7a] hover:bg-[#4a4a92]">
                           <TableHead className="text-white font-bold">Case No</TableHead>
                           <TableHead className="text-white font-bold">Property Name</TableHead>
                           <TableHead className="text-white font-bold">Parcel ID</TableHead>
@@ -588,44 +581,37 @@ const Reports = () => {
                       </TableHeader>
                       <TableBody>
                         {midrData.map((property, index) => (
-                          <TableRow key={property.id} className={index % 2 === 0 ? 'bg-slate-50/50' : 'bg-white'}>
+                          <TableRow key={property.id} className={index % 2 === 0 ? 'bg-muted/30' : 'bg-card'}>
                             <TableCell className="font-bold text-[#3d3d7a]">{property.caseNo}</TableCell>
                             <TableCell className="font-semibold">{property.propertyName}</TableCell>
-                            <TableCell className="font-mono text-xs bg-slate-100 rounded px-2 py-1">{property.parcelId}</TableCell>
+                            <TableCell className="font-mono text-xs bg-muted rounded px-2 py-1">{property.parcelId}</TableCell>
                             <TableCell className="font-semibold">${property.lienAmount.toLocaleString()}</TableCell>
                             <TableCell className="font-semibold">${property.minBid.toLocaleString()}</TableCell>
-                            <TableCell className="text-purple-600 font-semibold">${property.roughARV.toLocaleString()}</TableCell>
-                            <TableCell className="text-purple-700 font-bold text-lg">${property.finalARV.toLocaleString()}</TableCell>
+                            <TableCell className="text-slate-700 font-semibold">${property.roughARV.toLocaleString()}</TableCell>
+                            <TableCell className="text-slate-800 font-bold text-base">${property.finalARV.toLocaleString()}</TableCell>
                             <TableCell>
-                              <Badge 
-                                variant="outline" 
-                                className={
-                                  property.rehabType === "Extensive" ? "border-orange-500 text-orange-700 bg-orange-50" :
-                                  property.rehabType === "Moderate" ? "border-blue-500 text-blue-700 bg-blue-50" :
-                                  "border-green-500 text-green-700 bg-green-50"
-                                }
-                              >
+                              <Badge variant="outline" className="font-semibold">
                                 {property.rehabType}
                               </Badge>
                             </TableCell>
-                            <TableCell className="font-semibold text-orange-600">${property.rehabEstimate.toLocaleString()}</TableCell>
-                            <TableCell className="font-bold text-xl text-[#3d3d7a]">${property.maxBid.toLocaleString()}</TableCell>
+                            <TableCell className="font-semibold text-slate-700">${property.rehabEstimate.toLocaleString()}</TableCell>
+                            <TableCell className="font-bold text-lg text-[#3d3d7a]">${property.maxBid.toLocaleString()}</TableCell>
                             <TableCell>
                               <Badge variant="outline" className="font-semibold">{property.bed}/{property.bath}</Badge>
                             </TableCell>
                             <TableCell className="font-semibold">{property.sqFootage.toLocaleString()}</TableCell>
                             <TableCell>
-                              <span className="inline-flex items-center gap-1 text-emerald-600 font-bold text-lg">
+                              <span className="inline-flex items-center gap-1 text-slate-700 font-bold">
                                 <TrendingUp className="w-4 h-4" />
                                 {property.roi}
                               </span>
                             </TableCell>
-                            <TableCell className="font-bold text-emerald-600 text-lg">${property.profitPotential.toLocaleString()}</TableCell>
+                            <TableCell className="font-bold text-slate-700">${property.profitPotential.toLocaleString()}</TableCell>
                             <TableCell>
                               <Badge className={
-                                property.status === "Active" ? "bg-emerald-500 hover:bg-emerald-600 shadow-lg" : 
-                                property.status === "Pending" ? "bg-amber-500 hover:bg-amber-600 shadow-lg" : 
-                                "bg-blue-500 hover:bg-blue-600 shadow-lg"
+                                property.status === "Active" ? "bg-slate-700 hover:bg-slate-800" : 
+                                property.status === "Pending" ? "bg-slate-500 hover:bg-slate-600" : 
+                                "bg-slate-600 hover:bg-slate-700"
                               }>
                                 {property.status}
                               </Badge>
@@ -638,40 +624,40 @@ const Reports = () => {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                  <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-500/20 to-blue-600/20 p-6 border-2 border-blue-300 shadow-lg hover:shadow-xl transition-all group">
-                    <div className="absolute top-0 right-0 w-24 h-24 bg-blue-500/20 rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-transform" />
+                  <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 p-6 border border-slate-200 shadow-md hover:shadow-lg transition-all group">
+                    <div className="absolute top-0 right-0 w-24 h-24 bg-slate-200/30 rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-transform" />
                     <div className="relative">
-                      <DollarSign className="w-8 h-8 text-blue-600 mb-3" />
+                      <DollarSign className="w-8 h-8 text-[#3d3d7a] mb-3" />
                       <p className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">Total Properties</p>
-                      <p className="text-4xl font-bold text-blue-600 mt-2">{midrData.length}</p>
+                      <p className="text-4xl font-bold text-foreground mt-2">{midrData.length}</p>
                     </div>
                   </div>
-                  <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-emerald-500/20 to-emerald-600/20 p-6 border-2 border-emerald-300 shadow-lg hover:shadow-xl transition-all group">
-                    <div className="absolute top-0 right-0 w-24 h-24 bg-emerald-500/20 rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-transform" />
+                  <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 p-6 border border-slate-200 shadow-md hover:shadow-lg transition-all group">
+                    <div className="absolute top-0 right-0 w-24 h-24 bg-slate-200/30 rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-transform" />
                     <div className="relative">
-                      <TrendingUp className="w-8 h-8 text-emerald-600 mb-3" />
+                      <TrendingUp className="w-8 h-8 text-[#4a4a92] mb-3" />
                       <p className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">Average ROI</p>
-                      <p className="text-4xl font-bold text-emerald-600 mt-2">
+                      <p className="text-4xl font-bold text-foreground mt-2">
                         {Math.round(midrData.reduce((acc, p) => acc + parseInt(p.roi), 0) / midrData.length)}%
                       </p>
                     </div>
                   </div>
-                  <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-purple-500/20 to-purple-600/20 p-6 border-2 border-purple-300 shadow-lg hover:shadow-xl transition-all group">
-                    <div className="absolute top-0 right-0 w-24 h-24 bg-purple-500/20 rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-transform" />
+                  <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 p-6 border border-slate-200 shadow-md hover:shadow-lg transition-all group">
+                    <div className="absolute top-0 right-0 w-24 h-24 bg-slate-200/30 rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-transform" />
                     <div className="relative">
-                      <DollarSign className="w-8 h-8 text-purple-600 mb-3" />
+                      <DollarSign className="w-8 h-8 text-slate-700 mb-3" />
                       <p className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">Total Profit Potential</p>
-                      <p className="text-4xl font-bold text-purple-600 mt-2">
+                      <p className="text-4xl font-bold text-foreground mt-2">
                         ${(midrData.reduce((acc, p) => acc + p.profitPotential, 0) / 1000).toFixed(0)}K
                       </p>
                     </div>
                   </div>
-                  <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-amber-500/20 to-amber-600/20 p-6 border-2 border-amber-300 shadow-lg hover:shadow-xl transition-all group">
-                    <div className="absolute top-0 right-0 w-24 h-24 bg-amber-500/20 rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-transform" />
+                  <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 p-6 border border-slate-200 shadow-md hover:shadow-lg transition-all group">
+                    <div className="absolute top-0 right-0 w-24 h-24 bg-slate-200/30 rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-transform" />
                     <div className="relative">
-                      <Home className="w-8 h-8 text-amber-600 mb-3" />
+                      <Home className="w-8 h-8 text-slate-600 mb-3" />
                       <p className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">Total Investment</p>
-                      <p className="text-4xl font-bold text-amber-600 mt-2">
+                      <p className="text-4xl font-bold text-foreground mt-2">
                         ${(midrData.reduce((acc, p) => acc + p.maxBid + p.rehabEstimate, 0) / 1000).toFixed(0)}K
                       </p>
                     </div>
