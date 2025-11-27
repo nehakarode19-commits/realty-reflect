@@ -1,76 +1,105 @@
 import Layout from "@/components/Layout";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { Edit, Trash2, Search, Download, Upload } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Edit, Search, Download, RefreshCw } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import { useState } from "react";
 
 const properties = [
   {
     id: 1,
-    caseNo: "1255",
-    parcelId: "100002444400",
-    owners: "Mack Watt",
-    lien: 20000,
-    minBid: 25000,
-    arv: 14000,
-    rehab: 8000,
-    maxBid: 4000,
-    status: "Active",
+    caseNo: "45",
+    parcelId: "123",
+    date: "01-11-2025",
+    propertyName: "Oaks Villa",
+    lienAmount: 50000,
+    bed: 53,
+    bath: 565,
+    sqFootage: 555,
+    finalARV: "",
   },
   {
     id: 2,
-    caseNo: "1256",
-    parcelId: "100002444401",
-    owners: "Lila Hart",
-    lien: 30000,
-    minBid: 35000,
-    arv: 24000,
-    rehab: 10000,
-    maxBid: 5000,
-    status: "Pending",
+    caseNo: "1",
+    parcelId: "123",
+    date: "01-04-2025",
+    propertyName: "sunset villa",
+    lienAmount: 54350,
+    bed: 33,
+    bath: 3,
+    sqFootage: 32,
+    finalARV: "",
   },
   {
     id: 3,
-    caseNo: "1257",
-    parcelId: "100002444402",
-    owners: "Jordan Lee",
-    lien: 15000,
-    minBid: 20000,
-    arv: 12000,
-    rehab: 6500,
-    maxBid: 3500,
-    status: "Completed",
+    caseNo: "45",
+    parcelId: "123",
+    date: "01-11-2025",
+    propertyName: "ks charcoal",
+    lienAmount: 50000,
+    bed: 2,
+    bath: 12,
+    sqFootage: 6000,
+    finalARV: "",
   },
   {
     id: 4,
-    caseNo: "1258",
-    parcelId: "100002444403",
-    owners: "Avery Kim",
-    lien: 22000,
-    minBid: 28000,
-    arv: 18000,
-    rehab: 9000,
-    maxBid: 4500,
-    status: "Active",
+    caseNo: "5",
+    parcelId: "54",
+    date: "03-05-2025",
+    propertyName: "pine residence",
+    lienAmount: 2000,
+    bed: 9,
+    bath: 4,
+    sqFootage: 54,
+    finalARV: "27000",
   },
   {
     id: 5,
-    caseNo: "1259",
-    parcelId: "100002444404",
-    owners: "Riley Smith",
-    lien: 18000,
-    minBid: 23000,
-    arv: 15000,
-    rehab: 7500,
-    maxBid: 3000,
-    status: "Active",
+    caseNo: "87",
+    parcelId: "678",
+    date: "15-11-2025",
+    propertyName: "divine buds",
+    lienAmount: 3500000,
+    bed: 1,
+    bath: 3,
+    sqFootage: 52,
+    finalARV: "",
+  },
+  {
+    id: 6,
+    caseNo: "5656",
+    parcelId: "5665",
+    date: "29-05-2025",
+    propertyName: "palm greens",
+    lienAmount: 5000000,
+    bed: 5,
+    bath: 6,
+    sqFootage: 500,
+    finalARV: "",
+  },
+  {
+    id: 7,
+    caseNo: "45",
+    parcelId: "123",
+    date: "01-10-2025",
+    propertyName: "Oaks Villa",
+    lienAmount: 50000,
+    bed: 5,
+    bath: 3,
+    sqFootage: 500,
+    finalARV: "1500000",
   },
 ];
 
 const Properties = () => {
   const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedProperties, setSelectedProperties] = useState<number[]>([]);
   
   const formatCurrency = (value: number) => {
     return new Intl.NumberFormat("en-US", {
@@ -80,16 +109,19 @@ const Properties = () => {
     }).format(value);
   };
 
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case "Active":
-        return "bg-success text-success-foreground";
-      case "Pending":
-        return "bg-warning text-warning-foreground";
-      case "Completed":
-        return "bg-info text-info-foreground";
-      default:
-        return "bg-muted text-muted-foreground";
+  const handleSelectAll = (checked: boolean) => {
+    if (checked) {
+      setSelectedProperties(properties.map(p => p.id));
+    } else {
+      setSelectedProperties([]);
+    }
+  };
+
+  const handleSelectProperty = (id: number, checked: boolean) => {
+    if (checked) {
+      setSelectedProperties([...selectedProperties, id]);
+    } else {
+      setSelectedProperties(selectedProperties.filter(propId => propId !== id));
     }
   };
 
@@ -108,14 +140,6 @@ const Properties = () => {
               Export Excel
             </Button>
             <Button 
-              variant="outline"
-              className="bg-[#3d3d7a] text-white hover:bg-[#3d3d7a]/90 border-[#3d3d7a]"
-              onClick={() => navigate("/import-property-data")}
-            >
-              <Upload className="w-4 h-4 mr-2" />
-              Upload
-            </Button>
-            <Button 
               className="bg-[#3d3d7a] text-white hover:bg-[#3d3d7a]/90"
               onClick={() => navigate("/create-property")}
             >
@@ -125,83 +149,101 @@ const Properties = () => {
         </div>
 
         <div className="flex items-center gap-3">
-          <Badge variant="outline" className="flex items-center gap-2 px-3 py-2 text-sm bg-background">
-            SQ FT
-            <button className="ml-1" onClick={() => toast.info("SQ FT search")}>
-              <Search className="w-4 h-4" />
-            </button>
-          </Badge>
-          <Badge variant="outline" className="flex items-center gap-2 px-3 py-2 text-sm bg-background">
-            City
-            <button className="ml-1" onClick={() => toast.info("City search")}>
-              <Search className="w-4 h-4" />
-            </button>
-          </Badge>
-          <Badge variant="outline" className="flex items-center gap-2 px-3 py-2 text-sm bg-background">
-            Min Bid
-            <button className="ml-1" onClick={() => toast.info("Min Bid search")}>
-              <Search className="w-4 h-4" />
-            </button>
-          </Badge>
+          <div className="relative flex-1 max-w-md">
+            <Input 
+              placeholder="Search by property name..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pr-10"
+            />
+          </div>
+          <Button 
+            className="bg-[#3d3d7a] text-white hover:bg-[#3d3d7a]/90"
+            onClick={() => toast.info(`Searching for: ${searchQuery}`)}
+          >
+            <Search className="w-4 h-4 mr-2" />
+            Search
+          </Button>
         </div>
 
         <div className="bg-card rounded-lg border shadow-sm overflow-hidden">
+          <div className="flex items-center justify-between px-4 py-3 border-b bg-muted/30">
+            <h2 className="font-semibold text-foreground">Property Master</h2>
+            <div className="flex items-center gap-2">
+              <Button 
+                variant="ghost" 
+                size="icon"
+                onClick={() => toast.info("Refresh data")}
+              >
+                <RefreshCw className="w-4 h-4" />
+              </Button>
+            </div>
+          </div>
           <div className="overflow-x-auto">
             <Table>
               <TableHeader>
                 <TableRow className="bg-muted/50">
-                  <TableHead>NO.</TableHead>
-                  <TableHead>CASE NO</TableHead>
-                  <TableHead>PARCEL ID</TableHead>
-                  <TableHead>OWNERS</TableHead>
-                  <TableHead>LIEN</TableHead>
-                  <TableHead>MIN BID</TableHead>
-                  <TableHead>ARV</TableHead>
-                  <TableHead>REHAB</TableHead>
-                  <TableHead>MAX BID</TableHead>
-                  <TableHead>STATUS</TableHead>
-                  <TableHead>ACTION</TableHead>
+                  <TableHead className="w-12">
+                    <Checkbox 
+                      checked={selectedProperties.length === properties.length}
+                      onCheckedChange={handleSelectAll}
+                    />
+                  </TableHead>
+                  <TableHead>Case No</TableHead>
+                  <TableHead>Parcel ID</TableHead>
+                  <TableHead>Date</TableHead>
+                  <TableHead>Property Name</TableHead>
+                  <TableHead>Lien Amount</TableHead>
+                  <TableHead>Bed</TableHead>
+                  <TableHead>Bath</TableHead>
+                  <TableHead>Sq. Footage</TableHead>
+                  <TableHead>Final ARV</TableHead>
+                  <TableHead>Actions</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {properties.map((property, index) => (
                   <TableRow key={property.id}>
-                    <TableCell>{index + 1}</TableCell>
+                    <TableCell>
+                      <Checkbox 
+                        checked={selectedProperties.includes(property.id)}
+                        onCheckedChange={(checked) => handleSelectProperty(property.id, checked as boolean)}
+                      />
+                    </TableCell>
                     <TableCell className="font-medium">{property.caseNo}</TableCell>
                     <TableCell className="font-mono text-sm">
                       {property.parcelId}
                     </TableCell>
-                    <TableCell>{property.owners}</TableCell>
-                    <TableCell>{property.lien.toLocaleString()}</TableCell>
-                    <TableCell>{property.minBid.toLocaleString()}</TableCell>
-                    <TableCell>{property.arv.toLocaleString()}</TableCell>
-                    <TableCell>{property.rehab.toLocaleString()}</TableCell>
-                    <TableCell>{property.maxBid.toLocaleString()}</TableCell>
-                    <TableCell>{property.maxBid.toLocaleString()}</TableCell>
+                    <TableCell>{property.date}</TableCell>
+                    <TableCell>{property.propertyName}</TableCell>
+                    <TableCell>{property.lienAmount.toLocaleString()}</TableCell>
+                    <TableCell>{property.bed}</TableCell>
+                    <TableCell>{property.bath}</TableCell>
+                    <TableCell>{property.sqFootage}</TableCell>
+                    <TableCell>{property.finalARV || "-"}</TableCell>
                     <TableCell>
-                      <div className="flex items-center gap-2">
-                        <Button 
-                          variant="ghost" 
-                          size="icon" 
-                          className="h-8 w-8"
-                          onClick={() => toast.info(`Edit property ${property.caseNo}`)}
-                        >
-                          <Edit className="w-4 h-4 text-muted-foreground" />
-                        </Button>
-                        <Button 
-                          variant="ghost" 
-                          size="icon" 
-                          className="h-8 w-8"
-                          onClick={() => toast.success(`Property ${property.caseNo} deleted`)}
-                        >
-                          <Trash2 className="w-4 h-4 text-muted-foreground" />
-                        </Button>
-                      </div>
+                      <Button 
+                        variant="ghost" 
+                        size="icon" 
+                        className="h-8 w-8"
+                        onClick={() => toast.info(`Edit property ${property.caseNo}`)}
+                      >
+                        <Edit className="w-4 h-4 text-muted-foreground" />
+                      </Button>
                     </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
             </Table>
+          </div>
+          <div className="flex items-center justify-between px-4 py-3 border-t">
+            <div className="text-sm text-muted-foreground">
+              1-7 of 7
+            </div>
+            <div className="flex items-center gap-2">
+              <Button variant="outline" size="sm">1</Button>
+              <span className="text-sm text-muted-foreground">10 / page</span>
+            </div>
           </div>
         </div>
       </div>
