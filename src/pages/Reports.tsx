@@ -177,7 +177,7 @@ const Reports = () => {
     <Layout>
       <div className="space-y-8 pb-8">
         {/* Modern Header */}
-        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#3d3d7a] via-[#4a4a92] to-[#5656aa] p-8 text-white shadow-xl">
+        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#0ea5b9] via-[#17a2b8] to-[#20b5c9] p-8 text-white shadow-xl">
           <div className="relative z-10">
             <h1 className="text-4xl font-bold mb-2">Reports Dashboard</h1>
             <p className="text-white/90 text-lg">Comprehensive analytics and insights for your investment portfolio</p>
@@ -190,21 +190,21 @@ const Reports = () => {
           <TabsList className="grid w-full grid-cols-3 h-auto p-1 bg-muted/50 backdrop-blur-sm rounded-xl">
             <TabsTrigger 
               value="import" 
-              className="rounded-lg data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#3d3d7a] data-[state=active]:to-[#4a4a92] data-[state=active]:text-white py-3"
+              className="rounded-lg data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#0ea5b9] data-[state=active]:to-[#17a2b8] data-[state=active]:text-white py-3"
             >
               <FileCheck className="w-4 h-4 mr-2" />
               <span className="font-semibold">Import Summary</span>
             </TabsTrigger>
             <TabsTrigger 
               value="monthly"
-              className="rounded-lg data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#3d3d7a] data-[state=active]:to-[#4a4a92] data-[state=active]:text-white py-3"
+              className="rounded-lg data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#0ea5b9] data-[state=active]:to-[#17a2b8] data-[state=active]:text-white py-3"
             >
               <TrendingUp className="w-4 h-4 mr-2" />
               <span className="font-semibold">Monthly Summary</span>
             </TabsTrigger>
             <TabsTrigger 
               value="midr"
-              className="rounded-lg data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#3d3d7a] data-[state=active]:to-[#4a4a92] data-[state=active]:text-white py-3"
+              className="rounded-lg data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#0ea5b9] data-[state=active]:to-[#17a2b8] data-[state=active]:text-white py-3"
             >
               <FileSpreadsheet className="w-4 h-4 mr-2" />
               <span className="font-semibold">MIDR Report</span>
@@ -214,18 +214,18 @@ const Reports = () => {
           {/* Import Summary Report */}
           <TabsContent value="import" className="space-y-6 animate-fade-in">
             <Card className="shadow-2xl border-none overflow-hidden">
-              <div className="bg-gradient-to-r from-[#3d3d7a]/10 to-[#4a4a92]/10 px-6 py-5 border-b">
+              <div className="bg-gradient-to-r from-[#0ea5b9]/10 to-[#17a2b8]/10 px-6 py-5 border-b">
                 <div className="flex items-center justify-between">
                   <div>
                     <h2 className="text-2xl font-bold text-foreground flex items-center gap-2">
-                      <FileCheck className="w-6 h-6 text-[#3d3d7a]" />
+                      <FileCheck className="w-6 h-6 text-[#17a2b8]" />
                       Import Summary Report
                     </h2>
                     <p className="text-sm text-muted-foreground mt-1">Overview of all data imports and processing status</p>
                   </div>
                   <div className="flex gap-3">
                     <Select value={selectedFormat} onValueChange={setSelectedFormat}>
-                      <SelectTrigger className="w-36 border-2 hover:border-[#3d3d7a] transition-colors">
+                      <SelectTrigger className="w-36 border-2 hover:border-[#17a2b8] transition-colors">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
@@ -236,7 +236,7 @@ const Reports = () => {
                     </Select>
                     <Button 
                       onClick={() => handleExport("Import Summary", selectedFormat)}
-                      className="bg-gradient-to-r from-[#3d3d7a] to-[#4a4a92] hover:from-[#4a4a92] hover:to-[#5656aa] shadow-lg hover:shadow-xl transition-all"
+                      className="bg-gradient-to-r from-[#0ea5b9] to-[#17a2b8] hover:from-[#17a2b8] hover:to-[#20b5c9] shadow-lg hover:shadow-xl transition-all"
                     >
                       <Download className="w-4 h-4 mr-2" />
                       Export Report
@@ -250,8 +250,8 @@ const Reports = () => {
                     <div className="absolute top-0 right-0 w-20 h-20 bg-slate-200/30 rounded-full -mr-10 -mt-10" />
                     <div className="relative">
                       <p className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">Total Imports</p>
-                      <p className="text-4xl font-bold text-[#3d3d7a] mt-2">{importSummaryData.totalImports}</p>
-                      <div className="mt-2 flex items-center gap-1 text-xs text-[#3d3d7a]">
+                      <p className="text-4xl font-bold text-[#17a2b8] mt-2">{importSummaryData.totalImports}</p>
+                      <div className="mt-2 flex items-center gap-1 text-xs text-[#17a2b8]">
                         <TrendingUp className="w-3 h-3" />
                         <span>Active</span>
                       </div>
@@ -261,8 +261,8 @@ const Reports = () => {
                     <div className="absolute top-0 right-0 w-20 h-20 bg-slate-200/30 rounded-full -mr-10 -mt-10" />
                     <div className="relative">
                       <p className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">Total Rows</p>
-                      <p className="text-4xl font-bold text-[#4a4a92] mt-2">{importSummaryData.totalRows}</p>
-                      <div className="mt-2 flex items-center gap-1 text-xs text-[#4a4a92]">
+                      <p className="text-4xl font-bold text-[#0ea5b9] mt-2">{importSummaryData.totalRows}</p>
+                      <div className="mt-2 flex items-center gap-1 text-xs text-[#0ea5b9]">
                         <FileSpreadsheet className="w-3 h-3" />
                         <span>Processed</span>
                       </div>
@@ -312,7 +312,7 @@ const Reports = () => {
 
                 <div className="rounded-xl bg-muted/30 p-6 border border-border">
                   <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
-                    <Calendar className="w-4 h-4 text-[#3d3d7a]" />
+                    <Calendar className="w-4 h-4 text-[#17a2b8]" />
                     Import Details
                   </h3>
                   <div className="space-y-3">
@@ -329,7 +329,7 @@ const Reports = () => {
 
                 <div>
                   <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-                    <FileText className="w-5 h-5 text-[#3d3d7a]" />
+                    <FileText className="w-5 h-5 text-[#17a2b8]" />
                     Import History
                   </h3>
                   <div className="rounded-xl border border-border overflow-hidden bg-card shadow-md">
@@ -348,7 +348,7 @@ const Reports = () => {
                         {importDetails.map((item, index) => (
                           <TableRow key={index} className="hover:bg-muted/30 transition-colors">
                             <TableCell className="font-medium">{item.date}</TableCell>
-                            <TableCell className="font-semibold text-[#3d3d7a]">{item.fileName}</TableCell>
+                            <TableCell className="font-semibold text-[#17a2b8]">{item.fileName}</TableCell>
                             <TableCell>
                               <Badge variant="outline" className="font-semibold">{item.rows}</Badge>
                             </TableCell>
@@ -382,18 +382,18 @@ const Reports = () => {
           {/* Monthly Property Summary */}
           <TabsContent value="monthly" className="space-y-6 animate-fade-in">
             <Card className="shadow-2xl border-none overflow-hidden">
-              <div className="bg-gradient-to-r from-[#3d3d7a]/10 to-[#4a4a92]/10 px-6 py-5 border-b">
+              <div className="bg-gradient-to-r from-[#0ea5b9]/10 to-[#17a2b8]/10 px-6 py-5 border-b">
                 <div className="flex items-center justify-between flex-wrap gap-4">
                   <div>
                     <h2 className="text-2xl font-bold text-foreground flex items-center gap-2">
-                      <TrendingUp className="w-6 h-6 text-[#3d3d7a]" />
+                      <TrendingUp className="w-6 h-6 text-[#17a2b8]" />
                       Monthly Property Summary
                     </h2>
                     <p className="text-sm text-muted-foreground mt-1">Dashboard report with KPIs and analytics</p>
                   </div>
                   <div className="flex gap-3">
                     <Select value={selectedMonth} onValueChange={setSelectedMonth}>
-                      <SelectTrigger className="w-44 border-2 hover:border-[#3d3d7a] transition-colors">
+                      <SelectTrigger className="w-44 border-2 hover:border-[#17a2b8] transition-colors">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
@@ -403,7 +403,7 @@ const Reports = () => {
                       </SelectContent>
                     </Select>
                     <Select value={selectedFormat} onValueChange={setSelectedFormat}>
-                      <SelectTrigger className="w-36 border-2 hover:border-[#3d3d7a] transition-colors">
+                      <SelectTrigger className="w-36 border-2 hover:border-[#17a2b8] transition-colors">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
@@ -414,7 +414,7 @@ const Reports = () => {
                     </Select>
                     <Button 
                       onClick={() => handleExport("Monthly Summary", selectedFormat)}
-                      className="bg-gradient-to-r from-[#3d3d7a] to-[#4a4a92] hover:from-[#4a4a92] hover:to-[#5656aa] shadow-lg hover:shadow-xl transition-all"
+                      className="bg-gradient-to-r from-[#0ea5b9] to-[#17a2b8] hover:from-[#17a2b8] hover:to-[#20b5c9] shadow-lg hover:shadow-xl transition-all"
                     >
                       <Download className="w-4 h-4 mr-2" />
                       Export Report
@@ -434,7 +434,7 @@ const Reports = () => {
                         <div className="absolute top-0 right-0 w-20 h-20 bg-slate-200/30 rounded-full -mr-10 -mt-10 group-hover:scale-150 transition-transform" />
                         <div className="relative">
                           <div className="flex items-start justify-between mb-3">
-                            <Icon className="w-8 h-8 text-[#3d3d7a]" />
+                            <Icon className="w-8 h-8 text-[#17a2b8]" />
                             <Badge variant="outline" className="text-xs font-bold bg-white border-slate-300">
                               {kpi.change}
                             </Badge>
@@ -451,7 +451,7 @@ const Reports = () => {
                   <div className="rounded-xl border border-border overflow-hidden bg-card shadow-md">
                     <div className="bg-muted/30 px-6 py-4 border-b">
                       <h3 className="text-lg font-bold flex items-center gap-2">
-                        <TrendingUp className="w-5 h-5 text-[#3d3d7a]" />
+                        <TrendingUp className="w-5 h-5 text-[#17a2b8]" />
                         Monthly Property Growth
                       </h3>
                     </div>
@@ -470,7 +470,7 @@ const Reports = () => {
                             }}
                           />
                           <Legend wrapperStyle={{ fontSize: '14px', fontWeight: 600 }} />
-                          <Bar dataKey="properties" fill="#3d3d7a" name="Properties" radius={[6, 6, 0, 0]} />
+                          <Bar dataKey="properties" fill="#17a2b8" name="Properties" radius={[6, 6, 0, 0]} />
                         </BarChart>
                       </ResponsiveContainer>
                     </div>
@@ -479,7 +479,7 @@ const Reports = () => {
                   <div className="rounded-xl border border-border overflow-hidden bg-card shadow-md">
                     <div className="bg-muted/30 px-6 py-4 border-b">
                       <h3 className="text-lg font-bold flex items-center gap-2">
-                        <Home className="w-5 h-5 text-[#3d3d7a]" />
+                        <Home className="w-5 h-5 text-[#17a2b8]" />
                         Property Status Distribution
                       </h3>
                     </div>
@@ -526,18 +526,18 @@ const Reports = () => {
           {/* Master Investment Decision Report */}
           <TabsContent value="midr" className="space-y-6 animate-fade-in">
             <Card className="shadow-2xl border-none overflow-hidden">
-              <div className="bg-gradient-to-r from-[#3d3d7a]/10 to-[#4a4a92]/10 px-6 py-5 border-b">
+              <div className="bg-gradient-to-r from-[#0ea5b9]/10 to-[#17a2b8]/10 px-6 py-5 border-b">
                 <div className="flex items-center justify-between flex-wrap gap-4">
                   <div>
                     <h2 className="text-2xl font-bold text-foreground flex items-center gap-2">
-                      <FileSpreadsheet className="w-6 h-6 text-[#3d3d7a]" />
+                      <FileSpreadsheet className="w-6 h-6 text-[#17a2b8]" />
                       Master Investment Decision Report (MIDR)
                     </h2>
                     <p className="text-sm text-muted-foreground mt-1">Consolidated property analysis with ARV, Rehab, and Max Bid calculations</p>
                   </div>
                   <div className="flex gap-3">
                     <Select value={selectedFormat} onValueChange={setSelectedFormat}>
-                      <SelectTrigger className="w-36 border-2 hover:border-[#3d3d7a] transition-colors">
+                      <SelectTrigger className="w-36 border-2 hover:border-[#17a2b8] transition-colors">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
@@ -548,7 +548,7 @@ const Reports = () => {
                     </Select>
                     <Button 
                       onClick={() => handleExport("MIDR Report", selectedFormat)}
-                      className="bg-gradient-to-r from-[#3d3d7a] to-[#4a4a92] hover:from-[#4a4a92] hover:to-[#5656aa] shadow-lg hover:shadow-xl transition-all"
+                      className="bg-gradient-to-r from-[#0ea5b9] to-[#17a2b8] hover:from-[#17a2b8] hover:to-[#20b5c9] shadow-lg hover:shadow-xl transition-all"
                     >
                       <Download className="w-4 h-4 mr-2" />
                       Export Report
@@ -561,7 +561,7 @@ const Reports = () => {
                   <div className="overflow-x-auto">
                     <Table>
                       <TableHeader>
-                        <TableRow className="bg-[#3d3d7a] hover:bg-[#4a4a92]">
+                        <TableRow className="bg-[#17a2b8] hover:bg-[#0ea5b9]">
                           <TableHead className="text-white font-bold">Case No</TableHead>
                           <TableHead className="text-white font-bold">Property Name</TableHead>
                           <TableHead className="text-white font-bold">Parcel ID</TableHead>
@@ -582,7 +582,7 @@ const Reports = () => {
                       <TableBody>
                         {midrData.map((property, index) => (
                           <TableRow key={property.id} className={index % 2 === 0 ? 'bg-muted/30' : 'bg-card'}>
-                            <TableCell className="font-bold text-[#3d3d7a]">{property.caseNo}</TableCell>
+                            <TableCell className="font-bold text-[#17a2b8]">{property.caseNo}</TableCell>
                             <TableCell className="font-semibold">{property.propertyName}</TableCell>
                             <TableCell className="font-mono text-xs bg-muted rounded px-2 py-1">{property.parcelId}</TableCell>
                             <TableCell className="font-semibold">${property.lienAmount.toLocaleString()}</TableCell>
@@ -595,7 +595,7 @@ const Reports = () => {
                               </Badge>
                             </TableCell>
                             <TableCell className="font-semibold text-slate-700">${property.rehabEstimate.toLocaleString()}</TableCell>
-                            <TableCell className="font-bold text-lg text-[#3d3d7a]">${property.maxBid.toLocaleString()}</TableCell>
+                            <TableCell className="font-bold text-lg text-[#17a2b8]">${property.maxBid.toLocaleString()}</TableCell>
                             <TableCell>
                               <Badge variant="outline" className="font-semibold">{property.bed}/{property.bath}</Badge>
                             </TableCell>
@@ -627,7 +627,7 @@ const Reports = () => {
                   <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 p-6 border border-slate-200 shadow-md hover:shadow-lg transition-all group">
                     <div className="absolute top-0 right-0 w-24 h-24 bg-slate-200/30 rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-transform" />
                     <div className="relative">
-                      <DollarSign className="w-8 h-8 text-[#3d3d7a] mb-3" />
+                      <DollarSign className="w-8 h-8 text-[#17a2b8] mb-3" />
                       <p className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">Total Properties</p>
                       <p className="text-4xl font-bold text-foreground mt-2">{midrData.length}</p>
                     </div>
@@ -635,7 +635,7 @@ const Reports = () => {
                   <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 p-6 border border-slate-200 shadow-md hover:shadow-lg transition-all group">
                     <div className="absolute top-0 right-0 w-24 h-24 bg-slate-200/30 rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-transform" />
                     <div className="relative">
-                      <TrendingUp className="w-8 h-8 text-[#4a4a92] mb-3" />
+                      <TrendingUp className="w-8 h-8 text-[#0ea5b9] mb-3" />
                       <p className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">Average ROI</p>
                       <p className="text-4xl font-bold text-foreground mt-2">
                         {Math.round(midrData.reduce((acc, p) => acc + parseInt(p.roi), 0) / midrData.length)}%
