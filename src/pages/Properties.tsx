@@ -1,7 +1,7 @@
 import Layout from "@/components/Layout";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { Edit, Trash2, Search, Download, Upload } from "lucide-react";
+import { Edit, Search, Download, Upload } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
@@ -124,25 +124,22 @@ const Properties = () => {
           </div>
         </div>
 
-        <div className="flex items-center gap-3">
-          <Badge variant="outline" className="flex items-center gap-2 px-3 py-2 text-sm bg-background">
-            SQ FT
-            <button className="ml-1" onClick={() => toast.info("SQ FT search")}>
-              <Search className="w-4 h-4" />
-            </button>
-          </Badge>
-          <Badge variant="outline" className="flex items-center gap-2 px-3 py-2 text-sm bg-background">
-            City
-            <button className="ml-1" onClick={() => toast.info("City search")}>
-              <Search className="w-4 h-4" />
-            </button>
-          </Badge>
-          <Badge variant="outline" className="flex items-center gap-2 px-3 py-2 text-sm bg-background">
-            Min Bid
-            <button className="ml-1" onClick={() => toast.info("Min Bid search")}>
-              <Search className="w-4 h-4" />
-            </button>
-          </Badge>
+        <div className="flex items-center gap-3 max-w-2xl">
+          <div className="relative flex-1">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <input
+              type="text"
+              placeholder="Search by property name..."
+              className="w-full h-10 pl-10 pr-4 rounded-md border border-input bg-background text-sm focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+            />
+          </div>
+          <Button 
+            className="bg-[#6b7c93] text-white hover:bg-[#6b7c93]/90"
+            onClick={() => toast.info("Search functionality")}
+          >
+            <Search className="w-4 h-4 mr-2" />
+            Search
+          </Button>
         </div>
 
         <div className="bg-card rounded-lg border shadow-sm overflow-hidden">
@@ -179,24 +176,14 @@ const Properties = () => {
                     <TableCell>{property.maxBid.toLocaleString()}</TableCell>
                     <TableCell>{property.maxBid.toLocaleString()}</TableCell>
                     <TableCell>
-                      <div className="flex items-center gap-2">
-                        <Button 
-                          variant="ghost" 
-                          size="icon" 
-                          className="h-8 w-8"
-                          onClick={() => toast.info(`Edit property ${property.caseNo}`)}
-                        >
-                          <Edit className="w-4 h-4 text-muted-foreground" />
-                        </Button>
-                        <Button 
-                          variant="ghost" 
-                          size="icon" 
-                          className="h-8 w-8"
-                          onClick={() => toast.success(`Property ${property.caseNo} deleted`)}
-                        >
-                          <Trash2 className="w-4 h-4 text-muted-foreground" />
-                        </Button>
-                      </div>
+                      <Button 
+                        variant="ghost" 
+                        size="icon" 
+                        className="h-8 w-8"
+                        onClick={() => toast.info(`Edit property ${property.caseNo}`)}
+                      >
+                        <Edit className="w-4 h-4 text-muted-foreground" />
+                      </Button>
                     </TableCell>
                   </TableRow>
                 ))}
