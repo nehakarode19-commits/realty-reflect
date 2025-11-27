@@ -134,7 +134,7 @@ const Properties = () => {
             />
           </div>
           <Button 
-            className="bg-[#6b7c93] text-white hover:bg-[#6b7c93]/90"
+            className="bg-[#9089c4] text-white hover:bg-[#9089c4]/90"
             onClick={() => toast.info("Search functionality")}
           >
             <Search className="w-4 h-4 mr-2" />
