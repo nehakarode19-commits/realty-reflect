@@ -87,7 +87,7 @@ const RehabEstimator = () => {
             <h1 className="text-3xl font-bold text-foreground">Rehab Estimator</h1>
           </div>
           <Button 
-            className="bg-[#9b95c5] text-white hover:bg-[#9b95c5]/90"
+            className="bg-[#4a5273] text-white hover:bg-[#4a5273]/90"
             onClick={() => toast.info("Export Excel functionality coming soon")}
           >
             <Download className="w-4 h-4 mr-2" />
@@ -107,7 +107,7 @@ const RehabEstimator = () => {
             />
           </div>
           <Button
-            className="bg-[#9b95c5] text-white hover:bg-[#9b95c5]/90"
+            className="bg-[#4a5273] text-white hover:bg-[#4a5273]/90"
             onClick={() => toast.info("Search functionality coming soon")}
           >
             <Search className="w-4 h-4 mr-2" />
@@ -211,7 +211,7 @@ const RehabEstimator = () => {
                   <Button
                     variant="outline"
                     size="sm"
-                    className="w-8 h-8 p-0 bg-[#9b95c5] text-white hover:bg-[#9b95c5]/90"
+                    className="w-8 h-8 p-0 bg-[#4a5273] text-white hover:bg-[#4a5273]/90"
                   >
                     1
                   </Button>

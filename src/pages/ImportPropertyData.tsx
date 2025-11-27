@@ -308,7 +308,7 @@ const ImportPropertyData = () => {
                   Cancel
                 </Button>
                 <Button 
-                  className="bg-gradient-to-r from-primary to-secondary"
+                  className="bg-[#4a5273] text-white hover:bg-[#4a5273]/90"
                   onClick={handleContinueToPreview}
                 >
                   Continue to Preview
@@ -379,7 +379,7 @@ const ImportPropertyData = () => {
                   Cancel
                 </Button>
                 <Button 
-                  className="bg-gradient-to-r from-primary to-secondary"
+                  className="bg-[#4a5273] text-white hover:bg-[#4a5273]/90"
                   onClick={handleImport}
                 >
                   <CheckCircle className="w-4 h-4 mr-2" />

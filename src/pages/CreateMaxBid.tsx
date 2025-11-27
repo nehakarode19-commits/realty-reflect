@@ -186,7 +186,7 @@ const CreateMaxBid = () => {
         <div className="flex gap-4">
           <Button 
             onClick={handleSave}
-            className="bg-gradient-to-r from-primary to-secondary"
+            className="bg-[#4a5273] text-white hover:bg-[#4a5273]/90"
           >
             Save
           </Button>

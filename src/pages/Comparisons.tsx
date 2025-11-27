@@ -86,7 +86,7 @@ const Comparisons = () => {
         <div className="flex items-center justify-between">
           <h1 className="text-3xl font-bold text-foreground">Comparison Property Master</h1>
           <Button 
-            className="bg-[#9b95c5] text-white hover:bg-[#9b95c5]/90"
+            className="bg-[#4a5273] text-white hover:bg-[#4a5273]/90"
             onClick={() => toast.info("Export Excel functionality coming soon")}
           >
             <Download className="w-4 h-4 mr-2" />
@@ -105,7 +105,7 @@ const Comparisons = () => {
             />
           </div>
           <Button 
-            className="bg-[#9b95c5] text-white hover:bg-[#9b95c5]/90"
+            className="bg-[#4a5273] text-white hover:bg-[#4a5273]/90"
             onClick={() => toast.info("Search functionality coming soon")}
           >
             <Search className="w-4 h-4 mr-2" />
