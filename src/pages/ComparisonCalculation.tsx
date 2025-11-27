@@ -20,6 +20,7 @@ const comparisonProperties = [
     bed: "5A",
     bath: "58",
     sqFootage: "7777",
+    address: "",
     farFromProperty: "7757N",
     salesPrice: "560656",
     notes: "970470",
@@ -33,6 +34,7 @@ const comparisonProperties = [
     bed: "8",
     bath: "6",
     sqFootage: "9220",
+    address: "",
     farFromProperty: "120",
     salesPrice: "03200000",
     notes: "",
@@ -46,6 +48,7 @@ const comparisonProperties = [
     bed: "8",
     bath: "9",
     sqFootage: "150",
+    address: "",
     farFromProperty: "10",
     salesPrice: "200000",
     notes: "",
@@ -353,6 +356,10 @@ const ComparisonCalculation = () => {
                   <Label htmlFor="add-sqFootage">Sq. Footage:</Label>
                   <Input id="add-sqFootage" type="number" />
                 </div>
+                <div className="space-y-2 col-span-2">
+                  <Label htmlFor="add-address">Address:</Label>
+                  <Input id="add-address" placeholder="Enter property address" />
+                </div>
                 <div className="space-y-2">
                   <Label htmlFor="add-farFromProperty">Far from main property:</Label>
                   <Input id="add-farFromProperty" />
@@ -445,6 +452,14 @@ const ComparisonCalculation = () => {
                   <Input 
                     id="edit-sqFootage" 
                     defaultValue={editingProperty?.sqFootage}
+                  />
+                </div>
+                <div className="space-y-2 col-span-2">
+                  <Label htmlFor="edit-address">Address:</Label>
+                  <Input 
+                    id="edit-address" 
+                    placeholder="Enter property address"
+                    defaultValue={editingProperty?.address}
                   />
                 </div>
                 <div className="space-y-2">
