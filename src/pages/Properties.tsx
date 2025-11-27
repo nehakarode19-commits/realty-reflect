@@ -101,7 +101,7 @@ const Properties = () => {
           <div className="flex items-center gap-3">
             <Button 
               variant="outline"
-              className="bg-[#9089c4] text-white hover:bg-[#9089c4]/90 border-[#9089c4]"
+              className="bg-[#4a5273] text-white hover:bg-[#4a5273]/90 border-[#4a5273]"
               onClick={() => toast.info("Export Excel functionality coming soon")}
             >
               <Download className="w-4 h-4 mr-2" />
@@ -109,14 +109,14 @@ const Properties = () => {
             </Button>
             <Button 
               variant="outline"
-              className="bg-[#9089c4] text-white hover:bg-[#9089c4]/90 border-[#9089c4]"
+              className="bg-[#4a5273] text-white hover:bg-[#4a5273]/90 border-[#4a5273]"
               onClick={() => navigate("/import-property-data")}
             >
               <Upload className="w-4 h-4 mr-2" />
               Upload
             </Button>
             <Button 
-              className="bg-[#9089c4] text-white hover:bg-[#9089c4]/90"
+              className="bg-[#4a5273] text-white hover:bg-[#4a5273]/90"
               onClick={() => navigate("/create-property")}
             >
               + Add Property
@@ -134,7 +134,7 @@ const Properties = () => {
             />
           </div>
           <Button 
-            className="bg-[#9089c4] text-white hover:bg-[#9089c4]/90 h-10 px-6"
+            className="bg-[#4a5273] text-white hover:bg-[#4a5273]/90 h-10 px-6"
             onClick={() => toast.info("Search functionality")}
           >
             <Search className="w-4 h-4 mr-2" />
