@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "sonner";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const myProperties = [
   {
@@ -83,6 +84,7 @@ const myProperties = [
 ];
 
 const MyProperty = () => {
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedProperties, setSelectedProperties] = useState<number[]>([]);
   
@@ -196,7 +198,7 @@ const MyProperty = () => {
                           variant="ghost" 
                           size="icon" 
                           title="Edit"
-                          onClick={() => toast.info(`Edit property ${property.propertyName}`)}
+                          onClick={() => navigate(`/my-property/edit/${property.id}`)}
                         >
                           <Edit className="w-4 h-4" />
                         </Button>

@@ -16,6 +16,7 @@ import CreateMaxBid from "./pages/CreateMaxBid";
 import MaxBid from "./pages/MaxBid";
 import Reports from "./pages/Reports";
 import MyProperty from "./pages/MyProperty";
+import EditMyProperty from "./pages/EditMyProperty";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -40,6 +41,7 @@ const App = () => (
           <Route path="/max-bid" element={<MaxBid />} />
           <Route path="/reports" element={<Reports />} />
           <Route path="/my-property" element={<MyProperty />} />
+          <Route path="/my-property/edit/:id" element={<EditMyProperty />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
