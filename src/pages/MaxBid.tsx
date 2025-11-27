@@ -85,7 +85,7 @@ const MaxBid = () => {
           </div>
           <Button 
             variant="outline"
-            className="bg-[#3d3d7a] text-white hover:bg-[#3d3d7a]/90 border-[#3d3d7a]"
+            className="bg-[#4a5273] text-white hover:bg-[#4a5273]/90 border-[#4a5273]"
             onClick={() => toast.info("Export Excel functionality coming soon")}
           >
             <Download className="w-4 h-4 mr-2" />
@@ -107,7 +107,7 @@ const MaxBid = () => {
                 />
               </div>
               <Button 
-                className="bg-[#3d3d7a] text-white hover:bg-[#3d3d7a]/90"
+                className="bg-[#4a5273] text-white hover:bg-[#4a5273]/90"
                 onClick={() => toast.info(`Searching for: ${searchQuery}`)}
               >
                 <Search className="w-4 h-4 mr-2" />

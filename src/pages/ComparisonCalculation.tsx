@@ -195,7 +195,7 @@ const ComparisonCalculation = () => {
                   />
                   <Button 
                     variant="outline" 
-                    className="bg-gradient-to-r from-primary to-secondary"
+                    className="bg-[#4a5273] text-white hover:bg-[#4a5273]/90"
                     onClick={() => toast.info("Calculate ARV")}
                   >
                     Calculate
@@ -306,7 +306,7 @@ const ComparisonCalculation = () => {
 
         <div className="flex gap-4">
           <Button 
-            className="bg-gradient-to-r from-primary to-secondary"
+            className="bg-[#4a5273] text-white hover:bg-[#4a5273]/90"
             onClick={() => setAddDialogOpen(true)}
           >
             <Plus className="w-4 h-4 mr-2" />
@@ -385,7 +385,7 @@ const ComparisonCalculation = () => {
                 Cancel
               </Button>
               <Button 
-                className="bg-gradient-to-r from-primary to-secondary"
+                className="bg-[#4a5273] text-white hover:bg-[#4a5273]/90"
                 onClick={() => {
                   toast.success("Comparison property added");
                   setAddDialogOpen(false);
@@ -494,7 +494,7 @@ const ComparisonCalculation = () => {
                 Cancel
               </Button>
               <Button 
-                className="bg-gradient-to-r from-primary to-secondary"
+                className="bg-[#4a5273] text-white hover:bg-[#4a5273]/90"
                 onClick={handleUpdate}
               >
                 Update

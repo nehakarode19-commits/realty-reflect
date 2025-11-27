@@ -170,7 +170,7 @@ const CreateProperty = () => {
           </Card>
 
           <div className="flex gap-4">
-            <Button type="submit" className="bg-gradient-to-r from-primary to-secondary">
+            <Button type="submit" className="bg-[#4a5273] text-white hover:bg-[#4a5273]/90">
               Save Property
             </Button>
             <Button 
